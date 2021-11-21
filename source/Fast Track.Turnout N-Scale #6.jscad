@@ -1,4 +1,3 @@
-
 /*
 L17 __                                                                                                                                 __
 L15 __                                                                                                                     __ __ ++ ++ ||  ++ L16
@@ -81,131 +80,321 @@ L1  __      __ __ __ __ __#++ ++ ++ ++ ++ ++ ++ || || || E3 || || || || || E3 ||
             |        |
             +--------+
 
-300px => 1"
-1px => 0.08467mm
-1px => 0.08477842003mm
+300 px => 1"
+1 px =>   0.08466666667mm
+~ 1 px => 0.08477842003mm
 
-L0  y = 1944px =     0mm
-L1  y = 1752px = 16.28mm
-L2  y = 1741px = 17.21mm
-L3  y = 1730px = 18.14mm
-L4  y = 1719px = 19.08mm
-L5  y = 1707px = 20.09mm
-L6  y = 1696px = 21.03mm
-L7  y = 1685px = 21.96mm
-L8  y = 1674px = 22.89mm
-L9  y = 1662px = 23.91mm
-L10 y = 1651px = 24.84mm
-L11 y = 1640px = 25.77mm
-L12 y = 1629px = 26.70mm
-L13 y = 1617px = 27.72mm
-L14 y = 1607px = 28.57mm
-L15 y = 1595px = 29.59mm
-L16 y = 1584px = 30.52mm
-L17 y = 1573px = 31.45mm
+mm = ROUND((1944−px)×0.08466666667, 2)
 
-S-5 x[left] = 629px  = -15.07mm ~ -15.09mm,
-S-4 x[left] = 667px  = -11.85mm ~ -11.87mm,
-S-3 x[left] = 704px  =  -8.72mm ~  -8.73mm,
-S-2 x[left] = 742px  =  -5.50mm ~  -5.51mm,
-S-1 x[left] = 777px  =  -2.54mm ~  -2.54mm,
-S0  x[left] = 798px  =  -0.76mm ~  -0.76mm, x[center] = 807px  =  0.00mm, x[right] = 815px => width = 17px => 1.44mm ~ 1.44mm
-S1  x[left] = 819px  =   1.02mm ~   1.02mm,
-S2  x[left] = 854px  =   3.98mm ~   3.98mm,
-S3  x[left] = 892px  =   7.20mm ~   7.21mm,
-S4  x[left] = 930px  =  10.41mm ~  10.42mm,
-S5  x[left] = 967px  =  13.55mm ~  13.56mm,
-S6  x[left] = 1005px =  16.76mm ~  16.77mm,
-S7  x[left] = 1042px =  19.90mm ~  19.92mm,
-S8  x[left] = 1080px =  23.11mm ~  23.14mm,
-S9  x[left] = 1117px =  26.25mm ~  26.28mm,
-S10 x[left] = 1155px =  29.47mm ~  29.50mm,
-S11 x[left] = 1193px =  32.68mm ~  32.72mm,
-S12 x[left] = 1230px =  35.82mm ~  35.86mm,
-S13 x[left] = 1267px =  38.95mm ~  39.00mm,
-S14 x[left] = 1305px =  42.17mm ~  42.22mm,
-S15 x[left] = 1343px =  45.38mm ~  45.44mm,
-S16 x[left] = 1380px =  48.52mm ~  48.58mm,
-S17 x[left] = 1418px =  51.73mm ~  51.80mm,
-S18 x[left] = 1455px =  54.87mm ~  54.93mm,
-S19 x[left] = 1493px =  58.08mm ~  58.16mm,
-S20 x[left] = 1531px =  61.30mm ~  61.38mm,
-S21 x[left] = 1568px =  64.43mm ~  64.56mm,
-S22 x[left] = 1606px =  67.65mm ~  67.74mm,
-S23 x[left] = 1643px =  70.78mm ~  70.87mm,
-S24 x[left] = 1681px =  74.00mm ~  74.10mm,
-S25 x[left] = 1719px =  77.22mm ~  77.32mm,
-S26 x[left] = 1756px =  80.35mm ~  80.45mm,
-S27 x[left] = 1793px =  83.48mm ~  83.59mm,
-S28 x[left] = 1831px =  86.70mm ~  86.81mm,
-S29 x[left] = 1869px =  89.92mm ~  90.03mm,
-S30 x[left] = 1906px =  93.05mm ~  93.17mm,
-S31 x[left] = 1944px =  96.27mm ~  96.39mm,
-S32 x[left] = 1981px =  99.40mm ~  99.53mm,
-S33 x[left] = 2020px = 102.70mm ~ 102.84mm,
-S34 x[left] = 2056px = 105.75mm ~ 105.89mm,
-S35 x[left] = 2094px = 108.97mm ~ 109.11mm,
-S36 x[left] = 2131px = 112.10mm ~ 112.25mm,
-S37 x[left] = 2169px = 115.32mm ~ 115.47mm,
+L0  y = 1944 px = 0.00 mm
+L1  y = 1752 px = 16.26 mm
+L2  y = 1741 px = 17.19 mm
+L3  y = 1730 px = 18.12 mm
+L4  y = 1719 px = 19.05 mm
+L5  y = 1707 px = 20.07 mm
+L6  y = 1696 px = 21.00 mm
+L7  y = 1685 px = 21.93 mm
+L8  y = 1674 px = 22.86 mm
+L9  y = 1662 px = 23.88 mm
+L10 y = 1651 px = 24.81 mm
+L11 y = 1640 px = 25.74 mm
+L12 y = 1629 px = 26.67 mm
+L13 y = 1617 px = 27.69 mm
+L14 y = 1607 px = 28.53 mm
+L15 y = 1595 px = 29.55 mm
+L16 y = 1584 px = 30.48 mm
+L17 y = 1573 px = 31.41 mm
 
-L-#_R4_C = L-#_R4_D = L0-25_R3_C = L0-24_R3_D = L27-37_R2_C = L27-37_R2_D = 1786 px = 13.39mm
-L-#_R4_A = L-#_R4_B = L0-25_R3_A = L0-24_R3_B = L27-37_R2_A = L27-37_R2_B = 1798 px = 12.38mm
+mm = ROUND((px-807)×0.08466666667, 2)
 
-L#_R1_C = L#_R1_D = 1898 px = 3.90mm
-L#_R1_A = L#_R1_B = 1910 px = 2.88mm
+S_0_x[center] = 807 px = 0.00mm, x[right] = 815 px => width = 17 px => 1.44mm ~ 1.44mm
 
-L16_R4_D = 1739 px = 17.38mm
-L16_R4_C = 1741 px = 17.21mm
-L16_R4_B = 1752 px = 16.28mm
-L16_R4_A = 1754 px = 16.11mm
-L16_R2_D = 1853 px = 7.71mm
-L16_R2_C = 1855 px = 7.55mm
-L16_R2_B = 1865 px = 6.70mm
-L16_R2_A = 1868 px = 6.44mm
+S-5_x[left] =  629 px = -15.07 mm
+S-4_x[left] =  667 px = -11.85 mm
+S-3_x[left] =  704 px =  -8.72 mm
+S-2_x[left] =  742 px =  -5.50 mm
+S-1_x[left] =  777 px =  -2.54 mm
+S_0_x[left] =  798 px =  -0.76 mm
+S01_x[left] =  819 px =   1.02 mm
+S02_x[left] =  854 px =   3.98 mm
+S03_x[left] =  892 px =   7.20 mm
+S04_x[left] =  930 px =  10.41 mm
+S05_x[left] =  967 px =  13.55 mm
+S06_x[left] = 1005 px =  16.76 mm
+S07_x[left] = 1042 px =  19.90 mm
+S08_x[left] = 1080 px =  23.11 mm
+S09_x[left] = 1117 px =  26.25 mm
+S10_x[left] = 1155 px =  29.46 mm
+S11_x[left] = 1193 px =  32.68 mm
+S12_x[left] = 1230 px =  35.81 mm
+S13_x[left] = 1267 px =  38.95 mm
+S14_x[left] = 1305 px =  42.16 mm
+S15_x[left] = 1343 px =  45.38 mm
+S16_x[left] = 1380 px =  48.51 mm
+S17_x[left] = 1418 px =  51.73 mm
+S18_x[left] = 1455 px =  54.86 mm
+S19_x[left] = 1493 px =  58.08 mm
+S20_x[left] = 1531 px =  61.30 mm
+S21_x[left] = 1568 px =  64.43 mm
+S22_x[left] = 1606 px =  67.65 mm
+S23_x[left] = 1643 px =  70.78 mm
+S24_x[left] = 1681 px =  74.00 mm
+S25_x[left] = 1719 px =  77.22 mm
+S26_x[left] = 1756 px =  80.35 mm
+S27_x[left] = 1793 px =  83.48 mm
+S28_x[left] = 1831 px =  86.70 mm
+S29_x[left] = 1869 px =  89.92 mm
+S30_x[left] = 1906 px =  93.05 mm
+S31_x[left] = 1944 px =  96.27 mm
+S32_x[left] = 1981 px =  99.40 mm
+S33_x[left] = 2020 px = 102.70 mm
+S34_x[left] = 2056 px = 105.75 mm
+S35_x[left] = 2094 px = 108.97 mm
+S36_x[left] = 2131 px = 112.10 mm
+S37_x[left] = 2169 px = 115.32 mm
 
-Lx_R4_D =  px = mm
-Lx_R4_C =  px = mm
-Lx_R4_B =  px = mm
-Lx_R4_A =  px = mm
-Lx_R3_D =  px = mm
-Lx_R3_C =  px = mm
-Lx_R3_B =  px = mm
-Lx_R3_A =  px = mm
+mm = ROUND((1944−px)×0.08466666667, 2)
 
-L34_R4_D = 1631 px = 26.54mm
-L34_R4_C = 1636 px = 26.11mm
-L34_R4_B = 1645 px = 25.35mm
-L34_R4_A = 1648 px = 25.09mm
-L34_R3_D = 1747 px = 16.70mm
-L34_R3_C = 1750 px = 16.45mm
-L34_R3_B = 1760 px = 15.60mm
-L34_R3_A = 1763 px = 15.34mm
+L-#_R4_C = L-#_R4_D = L0-25_R3_C = L0-24_R3_D = L27-37_R2_C = L27-37_R2_D = 1786 px = 13.38mm
+L-#_R4_A = L-#_R4_B = L0-25_R3_A = L0-24_R3_B = L27-37_R2_A = L27-37_R2_B = 1798 px = 12.36mm
 
-L35_R4_D = 1626 px = 26.96mm
-L35_R4_C = 1629 px = 26.71mm
-L35_R4_B = 1639 px = 25.86mm
-L35_R4_A = 1642 px = 25.60mm
-L35_R3_D = 1741 px = 17.21mm
-L35_R3_C = 1744 px = 16.96mm
-L35_R3_B = 1754 px = 16.11mm
-L35_R3_A = 1757 px = 15.85mm
+L#_R1_C = L#_R1_D = 1898 px =  3.89mm
+L#_R1_A = L#_R1_B = 1910 px =  2.88mm
 
-L36_R4_D = 1620 px = 27.47mm
-L36_R4_C = 1623 px = 27.21mm
-L36_R4_B = 1633 px = 26.37mm
-L36_R4_A = 1636 px = 26.11mm
-L36_R3_D = 1734 px = 17.80mm
-L36_R3_C = 1737 px = 17.55mm
-L36_R3_B = 1747 px = 16.70mm
-L36_R3_A = 1750 px = 16.45mm
+L1_R4_D =  1784 px = 13.55 mm
+L1_R4_C =  1785 px = 13.46 mm
+L1_R2_D =  1883 px =  5.16 mm
+L1_R2_C =  1883 px =  5.16 mm
+      
+L2_R4_D =  1782 px = 13.72 mm
+L2_R4_C =  1783 px = 13.63 mm
+L2_R2_D =  1883 px =  5.16 mm
+L2_R2_C =  1883 px =  5.16 mm
+      
+L3_R4_D =  1781 px = 13.80 mm
+L3_R4_C =  1782 px = 13.72 mm
+L3_R2_D =  1883 px =  5.16 mm
+L3_R2_C =  1883 px =  5.16 mm
+      
+L4_R4_D =  1779 px = 13.97 mm
+L4_R4_C =  1780 px = 13.89 mm
+L4_R2_D =  1883 px =  5.16 mm
+L4_R2_C =  1883 px =  5.16 mm
+      
+L5_R4_D =  1777 px = 14.14 mm
+L5_R4_C =  1778 px = 14.05 mm
+L5_R2_D =  1883 px =  5.16 mm
+L5_R2_C =  1883 px =  5.16 mm
+      
+L7_R4_D =  1773 px = 14.48 mm
+L7_R4_C =  1774 px = 14.39 mm
+L7_R2_D =  1881 px =  5.33 mm
+L7_R2_C =  1882 px =  5.25 mm
+L7_R2_B =  1893 px =  4.32 mm
+L7_R2_A =  1894 px =  4.23 mm
+      
+L8_R4_D =  1771 px = 14.65 mm
+L8_R4_C =  1772 px = 14.56 mm
+L8_R4_B =  1783 px = 13.63 mm
+L8_R4_A =  1784 px = 13.55 mm
+L8_R2_D =  1879 px =  5.50 mm
+L8_R2_C =  1880 px =  5.42 mm
+L8_R2_B =  1891 px =  4.49 mm
+L8_R2_A =  1892 px =  4.40 mm
+      
+L9_R4_D =  1768 px = 14.90 mm
+L9_R4_C =  1769 px = 14.82 mm
+L9_R4_B =  1780 px = 13.89 mm
+L9_R4_A =  1781 px = 13.80 mm
+L9_R2_D =  1877 px =  5.67 mm
+L9_R2_C =  1878 px =  5.59 mm
+L9_R2_B =  1889 px =  4.66 mm
+L9_R2_A =  1890 px =  4.57 mm
+      
+L10_R4_D = 1765 px = 15.16 mm
+L10_R4_C = 1766 px = 15.07 mm
+L10_R4_B = 1777 px = 14.14 mm
+L10_R4_A = 1778 px = 14.05 mm
+L10_R2_D = 1875 px =  5.84 mm
+L10_R2_C = 1876 px =  5.76 mm
+L10_R2_B = 1888 px =  4.74 mm
+L10_R2_A = 1889 px =  4.66 mm
+      
+L12_R4_D = 1758 px = 15.75 mm
+L12_R4_C = 1759 px = 15.66 mm
+L12_R4_B = 1769 px = 14.82 mm
+L12_R4_A = 1771 px = 14.65 mm
+L12_R2_D = 1870 px =  6.27 mm
+L12_R2_C = 1871 px =  6.18 mm
+L12_R2_B = 1882 px =  5.25 mm
+L12_R2_A = 1883 px =  5.16 mm
+      
+L13_R4_D = 1753 px = 16.17 mm
+L13_R4_C = 1755 px = 16.00 mm
+L13_R4_B = 1766 px = 15.07 mm
+L13_R4_A = 1767 px = 14.99 mm
+L13_R2_D = 1866 px =  6.60 mm
+L13_R2_C = 1868 px =  6.43 mm
+L13_R2_B = 1878 px =  5.59 mm
+L13_R2_A = 1880 px =  5.42 mm
 
-L37_R4_D = 1614 px = 27.98mm
-L37_R4_C = 1617 px = 27.72mm
-L37_R4_B = 1627 px = 26.87mm
-L37_R4_A = 1630 px = 26.62mm
-L37_R3_D = 1728 px = 18.31mm
-L37_R3_C = 1731 px = 18.06mm
-L37_R3_B = 1741 px = 17.21mm
-L37_R3_A = 1744 px = 16.96mm
-
+L14_R4_D = 1749 px = 16.51 mm
+L14_R4_C = 1751 px = 16.34 mm
+L14_R4_B = 1762 px = 15.41 mm
+L14_R4_A = 1764 px = 15.24 mm
+L14_R2_D = 1863 px =  6.86 mm
+L14_R2_C = 1864 px =  6.77 mm
+L14_R2_B = 1875 px =  5.84 mm
+L14_R2_A = 1877 px =  5.67 mm
+      
+L15_R4_D = 1745 px = 16.85 mm
+L15_R4_C = 1747 px = 16.68 mm
+L15_R4_B = 1757 px = 15.83 mm
+L15_R4_A = 1759 px = 15.66 mm
+L15_R2_D = 1858 px =  7.28 mm
+L15_R2_C = 1860 px =  7.11 mm
+L15_R2_B = 1871 px =  6.18 mm
+L15_R2_A = 1873 px =  6.01 mm
+      
+L16_R4_D = 1739 px = 17.36 mm
+L16_R4_C = 1741 px = 17.19 mm
+L16_R4_B = 1752 px = 16.26 mm
+L16_R4_A = 1754 px = 16.09 mm
+L16_R2_D = 1853 px =  7.70 mm
+L16_R2_C = 1855 px =  7.54 mm
+L16_R2_B = 1865 px =  6.69 mm
+L16_R2_A = 1868 px =  6.43 mm
+      
+L18_R4_D = 1731 px = 18.03 mm
+L18_R4_C = 1733 px = 17.86 mm
+L18_R4_B = 1743 px = 17.02 mm
+L18_R4_A = 1745 px = 16.85 mm
+L18_R2_D = 1845 px =  8.38 mm
+L18_R2_C = 1847 px =  8.21 mm
+L18_R2_B = 1857 px =  7.37 mm
+L18_R2_A = 1859 px =  7.20 mm
+      
+L19_R4_D = 1726 px = 18.46 mm
+L19_R4_C = 1728 px = 18.29 mm
+L19_R4_B = 1738 px = 17.44 mm
+L19_R4_A = 1740 px = 17.27 mm
+L19_R2_D = 1840 px =  8.81 mm
+L19_R2_C = 1842 px =  8.64 mm
+L19_R2_B = 1852 px =  7.79 mm
+L19_R2_A = 1854 px =  7.62 mm
+      
+L20_R4_D = 1720 px = 18.97 mm
+L20_R4_C = 1723 px = 18.71 mm
+L20_R4_B = 1732 px = 17.95 mm
+L20_R4_A = 1735 px = 17.70 mm
+L20_R2_D = 1834 px =  9.31 mm
+L20_R2_C = 1836 px =  9.14 mm
+L20_R2_B = 1846 px =  8.30 mm
+L20_R2_A = 1848 px =  8.13 mm
+      
+L21_R4_D = 1715 px = 19.39 mm
+L21_R4_C = 1717 px = 19.22 mm
+L21_R4_B = 1727 px = 18.37 mm
+L21_R4_A = 1729 px = 18.20 mm
+L21_R2_D = 1829 px =  9.74 mm
+L21_R2_C = 1831 px =  9.57 mm
+L21_R2_B = 1841 px =  8.72 mm
+L21_R2_A = 1843 px =  8.55 mm
+      
+L22_R4_D = 1709 px = 19.90 mm
+L22_R4_C = 1711 px = 19.73 mm
+L22_R4_B = 1721 px = 18.88 mm
+L22_R4_A = 1723 px = 18.71 mm
+L22_R2_D = 1823 px = 10.24 mm
+L22_R2_C = 1825 px = 10.08 mm
+L22_R2_B = 1835 px =  9.23 mm
+L22_R2_A = 1837 px =  9.06 mm
+      
+L23_R4_D = 1703 px = 20.40 mm
+L23_R4_C = 1705 px = 20.24 mm
+L23_R4_B = 1715 px = 19.39 mm
+L23_R4_A = 1717 px = 19.22 mm
+L23_R2_D = 1817 px = 10.75 mm
+L23_R2_C = 1819 px = 10.58 mm
+L23_R2_B = 1829 px =  9.74 mm
+L23_R2_A = 1832 px =  9.48 mm
+      
+L26_R4_D = 1684 px = 22.01 mm
+L26_R4_C = 1687 px = 21.76 mm
+L26_R4_B = 1709 px = 19.90 mm
+L26_R4_A = 1712 px = 19.64 mm
+L26_R3_D = 1785 px = 13.46 mm
+L26_R3_C = 1786 px = 13.38 mm
+L26_R2_B = 1811 px = 11.26 mm
+L26_R2_A = 1813 px = 11.09 mm
+      
+L27_R4_D = 1677 px = 22.61 mm
+L27_R4_C = 1680 px = 22.35 mm
+L27_R4_B = 1703 px = 20.40 mm
+L27_R4_A = 1706 px = 20.15 mm
+L27_R3_D = 1779 px = 13.97 mm
+L27_R3_C = 1782 px = 13.72 mm
+L27_R2_B = 1811 px = 11.26 mm
+L27_R2_A = 1811 px = 11.26 mm
+      
+L28_R4_D = 1671 px = 23.11 mm
+L28_R4_C = 1674 px = 22.86 mm
+L28_R4_B = 1698 px = 20.83 mm
+L28_R4_A = 1700 px = 20.66 mm
+L28_R3_D = 1772 px = 14.56 mm
+L28_R3_C = 1775 px = 14.31 mm
+L28_R2_B = 1811 px = 11.26 mm
+L28_R2_A = 1811 px = 11.26 mm
+      
+L30_R4_D = 1659 px = 24.13 mm
+L30_R4_C = 1662 px = 23.88 mm
+L30_R4_B = 1671 px = 23.11 mm
+L30_R4_A = 1674 px = 22.86 mm
+L30_R3_D = 1773 px = 14.48 mm
+L30_R3_C = 1776 px = 14.22 mm
+      
+L31_R4_D = 1652 px = 24.72 mm
+L31_R4_C = 1655 px = 24.47 mm
+L31_R4_B = 1665 px = 23.62 mm
+L31_R4_A = 1668 px = 23.37 mm
+L31_R3_D = 1767 px = 14.99 mm
+L31_R3_C = 1770 px = 14.73 mm
+L31_R3_B = 1779 px = 13.97 mm
+L31_R3_A = 1782 px = 13.72 mm
+      
+L34_R4_D = 1631 px = 26.50 mm
+L34_R4_C = 1636 px = 26.08 mm
+L34_R4_B = 1645 px = 25.32 mm
+L34_R4_A = 1648 px = 25.06 mm
+L34_R3_D = 1747 px = 16.68 mm
+L34_R3_C = 1750 px = 16.43 mm
+L34_R3_B = 1760 px = 15.58 mm
+L34_R3_A = 1763 px = 15.32 mm
+      
+L35_R4_D = 1626 px = 26.92 mm
+L35_R4_C = 1629 px = 26.67 mm
+L35_R4_B = 1639 px = 25.82 mm
+L35_R4_A = 1642 px = 25.57 mm
+L35_R3_D = 1741 px = 17.19 mm
+L35_R3_C = 1744 px = 16.93 mm
+L35_R3_B = 1754 px = 16.09 mm
+L35_R3_A = 1757 px = 15.83 mm
+      
+L36_R4_D = 1620 px = 27.43 mm
+L36_R4_C = 1623 px = 27.18 mm
+L36_R4_B = 1633 px = 26.33 mm
+L36_R4_A = 1636 px = 26.08 mm
+L36_R3_D = 1734 px = 17.78 mm
+L36_R3_C = 1737 px = 17.53 mm
+L36_R3_B = 1747 px = 16.68 mm
+L36_R3_A = 1750 px = 16.43 mm
+      
+L37_R4_D = 1614 px = 27.94 mm
+L37_R4_C = 1617 px = 27.69 mm
+L37_R4_B = 1627 px = 26.84 mm
+L37_R4_A = 1630 px = 26.59 mm
+L37_R3_D = 1728 px = 18.29 mm
+L37_R3_C = 1731 px = 18.03 mm
+L37_R3_B = 1741 px = 17.19 mm
+L37_R3_A = 1744 px = 16.93 mm
 */
