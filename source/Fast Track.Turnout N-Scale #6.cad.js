@@ -80,6 +80,10 @@ L1  __      __ __ __ __ __#++ ++ ++ ++ ++ ++ ++ || || || E3 || || || || || E3 ||
             |        |
             +--------+
 
+
+
+
+
 300 px => 1"
 1 px =>   0.08466666667mm
 ~ 1 px => 0.08477842003mm
@@ -398,3 +402,157 @@ L37_R3_C = 1731 px = 18.03 mm
 L37_R3_B = 1741 px = 17.19 mm
 L37_R3_A = 1744 px = 16.93 mm
 */
+
+/**
+                           I     H                                           E     D
+▷ Y3                   ┌───○─────○───┐                                   ┌───○─────○───┐                          ┌───○─────○───┐
+│               ┌──────┘             └──────┐                     ┌──────┘             └──────┐            ┌──────┘             └──────┐
+▷ Y2      J ○───┘                           └───○─────────────○───┘                           └───○────○───┘                           └───○ C
+│           │                                   G             F                                                                            │
+│           │                                                                                                                              │
+│           │                                                                                                                              │
+▷ Y0      A ○──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────○ B
+
+            △──────────────△─────△──────────────△─────────────△──────────────△─────△──────────────△────△──────────────△─────△──────────────△
+           X0A            X0B   X0C           X0D           X1A            X1B   X1C            X1D  X2A            X2B   X2C            X2D
+
+▷ Y3        E ○─────○ D
+|            /       \
+|           /         \
+▷ Y1     F ○           ○ C
+│          │           │
+│          │           │
+│          │           │
+▷ Y0     A ○───────────○ B
+
+           △──△─────△──△
+           X1 X2    X3 X4
+
+Rail foot height: 0.40m
+Rail support height: 0.40m
+Slepper height under rail: 2.75mm 
+
+Y0 = 0.00mm
+Y1 = 2.75mm - (193/185 = 1.04)mm = 1.71mm
+Y2 = 2.75mm - (50/185 = 0.27)mm = 2.48mm
+Y3 = 2.75mm + 0.40mm = 3.15mm
+
+Russian Sleeper prototype:
+Rail Center to slide: 240mm
+Slide width: 240mm
+Slide to Sleeper Center: 300mm
+Rail Distance: 1760mm
+
+Scale rail distance: 12.87mm - 3.38mm = 9.49mm
+Scale: 9.49/1760 = 1/185
+
+N-Scale:
+Rail Center to slide: 240/185 = 1.30
+Slide width: 1.30mm
+Sleeper width top: 170mm/185 = 0.92mm
+Sleeper width bottom: 300mm/185 = 1.62mm
+
+Rail width on drawing: 1.01mm
+Rail width width actual: 1.33mm
+Rail side slack: 0.13mm
+Rail width with slack: 1.60mm
+Rail top side support: 40mm/160 = 0.25mm
+Rail top side support (): 40mm/160 = 1.25mm
+
+Drawing Left Bound: X#L
+Drawing Right Bound: X#R
+
+X#A = X#B - 1.30mm = X#L - 2.10mm
+X#B = X#L + 1.01mm/2 - 1.30mm = X#L - 0.80mm 
+X#C = X#R + (1.33mm-1.01mm)/2 + 0.13mm + 0.25mm = X#R + 0.54mm
+X#D = X#B + 2.34mm = X#R + 2.88mm
+
+**/
+
+const sleeper = (
+  rails /* {xl: number, xr: number}[] */,
+  l /* sleeper length */
+) => {
+  const Y3 = 3.15;
+  const Y2 = 2.48;
+  const Y1 = 1.71;
+  const Y0 = 0.0;
+  const dxA = 2.1;
+  const dxB = 0.8;
+  const x = 0.0;
+  const widthTop = 0.92;
+  const widthBottom = 1.62;
+
+  const points = rails.flatMap((r) => [
+    [r.xl - dxA, Y2],
+    [r.xl - dxB, Y3],
+    [r.xr + dxB, Y3],
+    [r.xr + dxA, Y2],
+  ]);
+  points[0][0] = x;
+  points[points.length - 1][0] = l;
+  points.push([l, Y0]);
+  points.push([x, Y0]);
+  const shape2D = polygon({ points: points.reverse() });
+  const shape3D = linear_extrude({ height: widthBottom }, shape2D);
+  /*
+▷ Y3        E ○─────○ D
+|            /       \
+|           /         \
+▷ Y1     F ○           ○ C
+│          │           │
+│          │           │
+│          │           │
+▷ Y0     A ○───────────○ B
+
+           △──△─────△──△
+           X1 X2    X3 X4
+*/
+
+  const X1 = 0.0;
+  const X2 = X1 + (widthBottom - widthTop) / 2;
+  const X4 = X1 + widthBottom;
+  const X3 = X4 - (X2 - X1);
+
+  const profile2D = polygon({
+    points: [
+      [X1, Y0],
+      [X4, Y0],
+      [X4, Y1],
+      [X3, Y3],
+      [X2, Y3],
+      [X1, Y1],
+    ],
+  });
+  const profile3D = translate(
+    [l, 0, 0],
+    rotate([0, -90, 0], linear_extrude({ height: l }, profile2D))
+  );
+
+  return rotate([-90, 0, 0], intersection(shape3D, profile3D));
+};
+
+// sizes in mm
+const L1 = 16.26;
+
+const S_1R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 13.38 },
+];
+const S_3R = S_1R;
+const S_4R = S_1R;
+const S_5R = S_1R;
+
+const S_5Y = -15.07;
+const S_4Y = -11.85;
+const S_3Y = -8.72;
+const S_1Y = -2.54;
+
+const main = () => {
+  return union(
+    translate([0, S_5Y, 0], sleeper(S_5R, L1)),
+    translate([0, S_4Y, 0], sleeper(S_4R, L1)),
+    translate([0, S_3Y, 0], sleeper(S_3R, L1)),
+    translate([0, S_1Y, 0], sleeper(S_1R, L1))
+  );
+};
