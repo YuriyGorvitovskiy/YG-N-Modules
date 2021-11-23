@@ -331,6 +331,8 @@ L26_R3_D = 1785 px = 13.46 mm
 L26_R3_C = 1786 px = 13.38 mm
 L26_R2_B = 1811 px = 11.26 mm
 L26_R2_A = 1813 px = 11.09 mm
+L26_R1_D = 1886 px =  4.91 mm
+L26_R1_C = 1885 px =  5.00 mm
       
 L27_R4_D = 1677 px = 22.61 mm
 L27_R4_C = 1680 px = 22.35 mm
@@ -340,6 +342,8 @@ L27_R3_D = 1779 px = 13.97 mm
 L27_R3_C = 1782 px = 13.72 mm
 L27_R2_B = 1811 px = 11.26 mm
 L27_R2_A = 1811 px = 11.26 mm
+L27_R1_D = 1886 px =  4.91 mm
+L27_R1_C = 1886 px =  4.91 mm
       
 L28_R4_D = 1671 px = 23.11 mm
 L28_R4_C = 1674 px = 22.86 mm
@@ -349,6 +353,8 @@ L28_R3_D = 1772 px = 14.56 mm
 L28_R3_C = 1775 px = 14.31 mm
 L28_R2_B = 1811 px = 11.26 mm
 L28_R2_A = 1811 px = 11.26 mm
+L28_R1_D = 1886 px =  4.91 mm
+L28_R1_C = 1886 px =  4.91 mm
       
 L30_R4_D = 1659 px = 24.13 mm
 L30_R4_C = 1662 px = 23.88 mm
@@ -448,7 +454,8 @@ Scale: 9.49/1760 = 1/185
 
 N-Scale:
 Rail Center to slide: 240/185 = 1.30
-Slide width: 1.30mm
+Middle Slide width: 1.30mm
+Side Slide width: 1.62mm
 Sleeper width top: 170mm/185 = 0.92mm
 Sleeper width bottom: 300mm/185 = 1.62mm
 
@@ -479,6 +486,7 @@ const sleeper = (
   const Y0 = 0.0;
   const dxA = 2.1;
   const dxB = 0.8;
+  const dxC = 1.6;
   const x = 0.0;
   const widthTop = 0.92;
   const widthBottom = 1.62;
@@ -490,6 +498,8 @@ const sleeper = (
     [r.xr + dxA, Y2],
   ]);
   points[0][0] = x;
+  points[1][0] = x + dxC;
+  points[points.length - 2][0] = l - dxC;
   points[points.length - 1][0] = l;
   points.push([l, Y0]);
   points.push([x, Y0]);
@@ -534,25 +544,223 @@ const sleeper = (
 
 // sizes in mm
 const L1 = 16.26;
+const L2 = 17.19;
+const L3 = 18.12;
+const L4 = 19.05;
+const L5 = 20.07;
+const L6 = 21.0;
+const L7 = 21.93;
+const L8 = 22.86;
+const L9 = 23.88;
+const L10 = 24.81;
+const L11 = 25.74;
+const L12 = 26.67;
+const L13 = 27.69;
+const L14 = 28.53;
+const L15 = 29.55;
+const L16 = 30.48;
+const L17 = 31.41;
 
-const S_1R = [
+const S_5R = [
   { xl: 2.88, xr: 3.89 },
   { xl: 12.36, xr: 13.38 },
 ];
-const S_3R = S_1R;
-const S_4R = S_1R;
-const S_5R = S_1R;
+const S_4R = S_5R;
+const S_3R = S_5R;
+const S_1R = S_5R;
+
+const S01R = [
+  { xl: 2.88, xr: 5.16 },
+  { xl: 13.55 - (5.16 - 2.88), xr: 13.55 },
+];
+const S02R = [
+  { xl: 2.88, xr: 5.16 },
+  { xl: 13.72 - (5.16 - 2.88), xr: 13.72 },
+];
+const S03R = [
+  { xl: 2.88, xr: 5.16 },
+  { xl: 13.8 - (5.16 - 2.88), xr: 13.8 },
+];
+const S04R = [
+  { xl: 2.88, xr: 5.16 },
+  { xl: 13.97 - (5.16 - 2.88), xr: 13.97 },
+];
+const S05R = [
+  { xl: 2.88, xr: 5.16 },
+  { xl: 14.14 - (5.16 - 2.88), xr: 14.14 },
+];
+const S07R = [
+  { xl: 2.88, xr: 5.33 },
+  { xl: 14.48 - (5.33 - 2.88), xr: 4.48 },
+];
+const S08R = [
+  { xl: 2.88, xr: 5.5 },
+  { xl: 14.65 - (5.5 - 2.88), xr: 14.65 },
+];
+const S09R = [
+  { xl: 2.88, xr: 5.67 },
+  { xl: 14.9 - (5.67 - 2.88), xr: 14.9 },
+];
+const S10R = [
+  { xl: 2.88, xr: 5.84 },
+  { xl: 15.16 - (5.84 - 2.88), xr: 15.16 },
+];
+const S12R = [
+  { xl: 2.88, xr: 6.27 },
+  { xl: 15.75 - (6.27 - 2.88), xr: 15.75 },
+];
+const S13R = [
+  { xl: 2.88, xr: 6.6 },
+  { xl: 16.17 - (6.6 - 2.88), xr: 16.17 },
+];
+const S14R = [
+  { xl: 2.88, xr: 6.86 },
+  { xl: 16.51 - (6.86 - 2.88), xr: 16.51 },
+];
+const S15R = [
+  { xl: 2.88, xr: 7.28 },
+  { xl: 16.85 - (7.28 - 2.88), xr: 16.85 },
+];
+const S16R = [
+  { xl: 2.88, xr: 7.7 },
+  { xl: 17.36 - (7.7 - 2.88), xr: 17.36 },
+];
+const S18R = [{ xl: 2.88, xr: 18.03 }];
+const S19R = [{ xl: 2.88, xr: 18.46 }];
+const S20R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 8.13, xr: 13.38 },
+  { xl: 17.7, xr: 18.97 },
+];
+const S21R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 8.55, xr: 13.38 },
+  { xl: 18.2, xr: 19.39 },
+];
+const S22R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 9.06, xr: 13.38 },
+  { xl: 18.71, xr: 19.9 },
+];
+const S23R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 9.48, xr: 13.38 },
+  { xl: 19.22, xr: 20.4 },
+];
+const S26R = [
+  { xl: 2.88, xr: 5.0 },
+  { xl: 11.09, xr: 13.46 },
+  { xl: 19.64, xr: 22.01 },
+];
+const S27R = [
+  { xl: 2.88, xr: 4.91 },
+  { xl: 11.26, xr: 13.97 },
+  { xl: 20.15, xr: 22.61 },
+];
+const S28R = [
+  { xl: 2.88, xr: 4.91 },
+  { xl: 11.26, xr: 14.56 },
+  { xl: 20.66, xr: 23.11 },
+];
+const S30R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 14.48 },
+  { xl: 22.86, xr: 24.13 },
+];
+const S31R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 14.99 },
+  { xl: 23.37, xr: 24.72 },
+];
+const S34R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 16.68 },
+  { xl: 25.06, xr: 26.5 },
+];
+const S35R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 17.19 },
+  { xl: 25.57, xr: 26.92 },
+];
+const S36R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 17.78 },
+  { xl: 26.08, xr: 27.43 },
+];
+const S37R = [
+  { xl: 2.88, xr: 3.89 },
+  { xl: 12.36, xr: 18.29 },
+  { xl: 26.59, xr: 27.94 },
+];
 
 const S_5Y = -15.07;
 const S_4Y = -11.85;
 const S_3Y = -8.72;
 const S_1Y = -2.54;
+const S01Y = 1.02;
+const S02Y = 3.98;
+const S03Y = 7.2;
+const S04Y = 10.41;
+const S05Y = 13.55;
+const S07Y = 19.9;
+const S08Y = 23.11;
+const S09Y = 26.25;
+const S10Y = 29.46;
+const S12Y = 35.81;
+const S13Y = 38.95;
+const S14Y = 42.16;
+const S15Y = 45.38;
+const S16Y = 48.51;
+const S18Y = 54.86;
+const S19Y = 58.08;
+const S20Y = 61.3;
+const S21Y = 64.43;
+const S22Y = 67.65;
+const S23Y = 70.78;
+const S26Y = 80.35;
+const S27Y = 83.48;
+const S28Y = 86.7;
+const S30Y = 93.05;
+const S31Y = 96.27;
+const S34Y = 105.75;
+const S35Y = 108.97;
+const S36Y = 112.1;
+const S37Y = 115.32;
 
 const main = () => {
   return union(
     translate([0, S_5Y, 0], sleeper(S_5R, L1)),
     translate([0, S_4Y, 0], sleeper(S_4R, L1)),
     translate([0, S_3Y, 0], sleeper(S_3R, L1)),
-    translate([0, S_1Y, 0], sleeper(S_1R, L1))
+    translate([0, S_1Y, 0], sleeper(S_1R, L1)),
+    translate([0, S01Y, 0], sleeper(S01R, L2)),
+    translate([0, S02Y, 0], sleeper(S02R, L2)),
+    translate([0, S03Y, 0], sleeper(S03R, L2)),
+    translate([0, S04Y, 0], sleeper(S04R, L2)),
+    translate([0, S05Y, 0], sleeper(S05R, L2)),
+    translate([0, S07Y, 0], sleeper(S07R, L2)),
+    translate([0, S08Y, 0], sleeper(S08R, L3)),
+    translate([0, S09Y, 0], sleeper(S09R, L3)),
+    translate([0, S10Y, 0], sleeper(S10R, L3)),
+    translate([0, S12Y, 0], sleeper(S12R, L4)),
+    translate([0, S13Y, 0], sleeper(S13R, L4)),
+    translate([0, S14Y, 0], sleeper(S14R, L4)),
+    translate([0, S15Y, 0], sleeper(S15R, L5)),
+    translate([0, S16Y, 0], sleeper(S16R, L5)),
+    translate([0, S18Y, 0], sleeper(S18R, L6)),
+    translate([0, S19Y, 0], sleeper(S19R, L7)),
+    translate([0, S20Y, 0], sleeper(S20R, L7)),
+    translate([0, S21Y, 0], sleeper(S21R, L8)),
+    translate([0, S22Y, 0], sleeper(S22R, L8)),
+    translate([0, S23Y, 0], sleeper(S23R, L9)),
+    translate([0, S26Y, 0], sleeper(S26R, L10)),
+    translate([0, S27Y, 0], sleeper(S27R, L11)),
+    translate([0, S28Y, 0], sleeper(S28R, L11)),
+    translate([0, S30Y, 0], sleeper(S30R, L13)),
+    translate([0, S31Y, 0], sleeper(S31R, L13)),
+    translate([0, S34Y, 0], sleeper(S34R, L15)),
+    translate([0, S35Y, 0], sleeper(S35R, L16)),
+    translate([0, S36Y, 0], sleeper(S36R, L16)),
+    translate([0, S37Y, 0], sleeper(S37R, L17))
   );
 };
