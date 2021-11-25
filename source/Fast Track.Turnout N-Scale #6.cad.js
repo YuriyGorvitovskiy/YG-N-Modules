@@ -260,10 +260,10 @@ L15_R2_C = 1860 px =  7.11 mm
 L15_R2_B = 1871 px =  6.18 mm
 L15_R2_A = 1873 px =  6.01 mm
       
-L16_R4_D = 1739 px = 17.36 mm
-L16_R4_C = 1741 px = 17.19 mm
-L16_R4_B = 1752 px = 16.26 mm
-L16_R4_A = 1754 px = 16.09 mm
+L16_R4_D = 1741 px = 17.19 mm
+L16_R4_C = 1743 px = 17.02 mm
+L16_R4_B = 1753 px = 16.17 mm
+L16_R4_A = 1755 px = 16.00 mm
 L16_R2_D = 1853 px =  7.70 mm
 L16_R2_C = 1855 px =  7.54 mm
 L16_R2_B = 1865 px =  6.69 mm
@@ -829,7 +829,7 @@ const rails = () => {
       { xl: S13X, yl: 16.0, yr: 16.17 },
       { xl: S14X, yl: 16.34, yr: 16.51 },
       { xl: S15X, yl: 16.68, yr: 16.85 },
-      { xl: S16X, yl: 17.19, yr: 17.36 },
+      { xl: S16X, yl: 17.02, yr: 17.19 },
     ],
     [
       { xl: S01X, yl: 2.88 },
@@ -973,6 +973,115 @@ const rails = () => {
   );
 };
 
+const connector = (top) => {
+  const shiftTop = 0.3;
+  const shiftBottom = 1.0 + 0.3;
+
+  const topPoints = top.flatMap((p) => {
+    const points = [];
+    if (p.yl !== undefined) {
+      points.push([p.xl, p.yl + shiftTop]);
+    }
+    if (p.yr !== undefined) {
+      points.push([p.xl + SWID, p.yr + shiftTop]);
+    }
+    return points;
+  });
+  const bottomPoints = top.flatMap((p) => {
+    const points = [];
+    if (p.yl !== undefined) {
+      points.push([p.xl, p.yl - shiftBottom]);
+    }
+    if (p.yr !== undefined) {
+      points.push([p.xl + SWID, p.yr - shiftBottom]);
+    }
+    return points;
+  });
+  const connector2D = polygon({
+    points: bottomPoints.concat(topPoints.reverse()),
+  });
+  return linear_extrude({ height: 0.5 }, connector2D);
+};
+
+const connectors = () => {
+  const connector1 = connector([
+    { xl: S_5X, yl: 3.89 },
+    { xl: S37X, yl: 3.89 },
+  ]);
+  const connector2 = connector([
+    { xl: S_5X, yl: 13.38 },
+    { xl: S00X, yl: 13.38 },
+    { xl: S01X, yl: 13.46, yr: 13.55 },
+    { xl: S02X, yl: 13.63, yr: 13.72 },
+    { xl: S03X, yl: 13.72, yr: 13.8 },
+    { xl: S04X, yl: 13.89, yr: 13.97 },
+    { xl: S05X, yl: 14.05, yr: 14.14 },
+    { xl: S07X, yl: 14.39, yr: 14.48 },
+    { xl: S08X, yl: 14.56, yr: 14.65 },
+    { xl: S09X, yl: 14.82, yr: 14.9 },
+    { xl: S10X, yl: 15.07, yr: 15.16 },
+    { xl: S12X, yl: 15.66, yr: 15.75 },
+    { xl: S13X, yl: 16.0, yr: 16.17 },
+    { xl: S14X, yl: 16.34, yr: 16.51 },
+    { xl: S15X, yl: 16.68, yr: 16.85 },
+    { xl: S16X, yl: 17.02, yr: 17.19 },
+    { xl: S18X, yl: 17.86, yr: 18.03 },
+    { xl: S19X, yl: 18.29, yr: 18.46 },
+    { xl: S20X, yl: 18.71, yr: 18.97 },
+    { xl: S21X, yl: 19.22, yr: 19.39 },
+    { xl: S22X, yl: 19.73, yr: 19.9 },
+    { xl: S23X, yl: 20.24, yr: 20.4 },
+    { xl: S26X, yl: 21.76, yr: 22.01 },
+    { xl: S27X, yl: 22.35, yr: 22.61 },
+    { xl: S28X, yl: 22.86, yr: 23.11 },
+    { xl: S30X, yl: 23.88 },
+    { xl: S37X, yr: 27.94 },
+  ]);
+  return union(connector1, connector2);
+};
+
+const support = (x, y) => {
+  const baseL = 6.0;
+  const baseW = 3.0;
+  const baseH = 0.3;
+  const poleR = 0.5;
+  const poleH = 5.0;
+
+  const base = intersection(
+    cube({ size: [baseL, baseW, baseH * 2], center: true }),
+    polyhedron({
+      points: [
+        // points at base
+        [-baseL / 2, -baseW / 2, 0],
+        [-baseL / 2, baseW / 2, 0],
+        [baseL / 2, baseW / 2, 0],
+        [baseL / 2, -baseW / 2, 0],
+        // apex point
+        [0, 0, -baseL],
+      ],
+      triangles: [
+        [0, 1, 3],
+        [2, 3, 1],
+        [0, 4, 1],
+        [1, 4, 2],
+        [2, 4, 3],
+        [3, 4, 0],
+      ],
+    })
+  ).translate(0, 0, baseH);
+
+  const pole = cylinder({ r: poleR, h: poleH });
+  return union(pole, base).translate([x, y, -5.0]);
+};
+
+const supports = (y) => {
+  return union(
+    support(S_5X + SWID / 2, 13.38 - 0.5),
+    support(S_5X + SWID / 2, (13.38 + 3.89) / 2 - 0.5),
+    support(S_5X + SWID / 2, 3.89 - 0.5)
+  );
+};
+
 const main = () => {
-  return difference(sleepers(), rails());
+  return union(difference(sleepers(), rails()), connectors(), supports());
 };
