@@ -189,7 +189,10 @@ L5_R4_D =  1777 px = 14.14 mm
 L5_R4_C =  1778 px = 14.05 mm
 L5_R2_D =  1883 px =  5.16 mm
 L5_R2_C =  1883 px =  5.16 mm
-      
+
+L6_R4_D =  1774 px = 14.39 mm
+L6_R4_C =  1775 px = 14.31 mm
+
 L7_R4_D =  1773 px = 14.48 mm
 L7_R4_C =  1774 px = 14.39 mm
 L7_R2_D =  1881 px =  5.33 mm
@@ -223,6 +226,9 @@ L10_R2_D = 1875 px =  5.84 mm
 L10_R2_C = 1876 px =  5.76 mm
 L10_R2_B = 1888 px =  4.74 mm
 L10_R2_A = 1889 px =  4.66 mm
+      
+L11_R4_D = 1760 px = 15.58 mm
+L11_R4_C = 1762 px = 15.41 mm
       
 L12_R4_D = 1758 px = 15.75 mm
 L12_R4_C = 1759 px = 15.66 mm
@@ -268,6 +274,9 @@ L16_R2_D = 1853 px =  7.70 mm
 L16_R2_C = 1855 px =  7.54 mm
 L16_R2_B = 1865 px =  6.69 mm
 L16_R2_A = 1868 px =  6.43 mm
+      
+L17_R4_D = 1735 px = 17.70 mm
+L17_R4_C = 1737 px = 17.53 mm
       
 L18_R4_D = 1731 px = 18.03 mm
 L18_R4_C = 1733 px = 17.86 mm
@@ -323,6 +332,12 @@ L23_R2_C = 1819 px = 10.58 mm
 L23_R2_B = 1829 px =  9.74 mm
 L23_R2_A = 1832 px =  9.48 mm
       
+L24_R4_D = 1695 px = 21.08 mm
+L24_R4_C = 1698 px = 20.83 mm
+
+L25_R4_D = 1689 px = 21.59 mm
+L25_R4_C = 1692 px = 21.34 mm
+
 L26_R4_D = 1684 px = 22.01 mm
 L26_R4_C = 1687 px = 21.76 mm
 L26_R4_B = 1709 px = 19.90 mm
@@ -356,6 +371,9 @@ L28_R2_A = 1811 px = 11.26 mm
 L28_R1_D = 1886 px =  4.91 mm
 L28_R1_C = 1886 px =  4.91 mm
       
+L29_R4_D = 1664 px = 23.71 mm
+L29_R4_C = 1667 px = 23.45 mm
+      
 L30_R4_D = 1659 px = 24.13 mm
 L30_R4_C = 1662 px = 23.88 mm
 L30_R4_B = 1671 px = 23.11 mm
@@ -372,6 +390,12 @@ L31_R3_C = 1770 px = 14.73 mm
 L31_R3_B = 1779 px = 13.97 mm
 L31_R3_A = 1782 px = 13.72 mm
       
+L32_R4_D = 1645 px = 25.32 mm
+L32_R4_C = 1648 px = 25.06 mm
+
+L33_R4_D = 1639 px = 25.82 mm
+L33_R4_C = 1642 px = 25.57 mm
+
 L34_R4_D = 1631 px = 26.50 mm
 L34_R4_C = 1636 px = 26.08 mm
 L34_R4_B = 1645 px = 25.32 mm
@@ -479,6 +503,7 @@ const SWID = 1.62;
 const S_5X = -15.07;
 const S_4X = -11.85;
 const S_3X = -8.72;
+const S_2X = -5.5;
 const S_1X = -2.54;
 const S00X = 0;
 const S01X = 1.02;
@@ -486,26 +511,34 @@ const S02X = 3.98;
 const S03X = 7.2;
 const S04X = 10.41;
 const S05X = 13.55;
+const S06X = 16.76;
 const S07X = 19.9;
 const S08X = 23.11;
 const S09X = 26.25;
 const S10X = 29.46;
+const S11X = 32.68;
 const S12X = 35.81;
 const S13X = 38.95;
 const S14X = 42.16;
 const S15X = 45.38;
 const S16X = 48.51;
+const S17X = 51.73;
 const S18X = 54.86;
 const S19X = 58.08;
 const S20X = 61.3;
 const S21X = 64.43;
 const S22X = 67.65;
 const S23X = 70.78;
+const S24X = 74.0;
+const S25X = 77.22;
 const S26X = 80.35;
 const S27X = 83.48;
 const S28X = 86.7;
+const S29X = 89.92;
 const S30X = 93.05;
 const S31X = 96.27;
+const S32X = 99.4;
+const S33X = 102.7;
 const S34X = 105.75;
 const S35X = 108.97;
 const S36X = 112.1;
@@ -1041,11 +1074,13 @@ const connectors = () => {
 };
 
 const support = (x, y) => {
-  const baseL = 6.0;
+  const baseL = 9.0;
   const baseW = 3.0;
   const baseH = 0.3;
-  const poleR = 0.5;
-  const poleH = 5.0;
+  const poleRT = 0.5;
+  const poleRB = 1.0;
+  const poleH = 5.1;
+  const baseZ = -5.0;
 
   const base = intersection(
     cube({ size: [baseL, baseW, baseH * 2], center: true }),
@@ -1070,15 +1105,139 @@ const support = (x, y) => {
     })
   ).translate(0, 0, baseH);
 
-  const pole = cylinder({ r: poleR, h: poleH });
-  return union(pole, base).translate([x, y, -5.0]);
+  const pole = cylinder({ r1: poleRB, r2: poleRT, h: poleH });
+  return union(pole, base).translate([x, y, baseZ]);
 };
 
-const supports = (y) => {
+/* Sleeper Top Rail position, drawing base
+            +--------+
+         |  | sleeper|
+      yr ▷  |      --+
+         |  |   --/  |
+      yl ▷  +--/     |
+         |  |top rail|
+         |  |      --+
+         |  |   --/  |
+yl - RDW ▷  +--/     |
+         |  |        |
+         |       
+         +──△────────△─
+            xl    xl + SDW
+*/
+const STR_5 = { xl: S_5X, yl: 13.38, yr: 13.38 };
+const STR_4 = { xl: S_4X, yl: 13.38, yr: 13.38 };
+const STR_3 = { xl: S_3X, yl: 13.38, yr: 13.38 };
+const STR_2 = { xl: S_2X, yl: 13.38, yr: 13.38 };
+const STR_1 = { xl: S_1X, yl: 13.38, yr: 13.38 };
+const STR00 = { xl: S00X, yl: 13.38, yr: 13.46 };
+const STR01 = { xl: S01X, yl: 13.46, yr: 13.55 };
+const STR02 = { xl: S02X, yl: 13.63, yr: 13.72 };
+const STR03 = { xl: S03X, yl: 13.72, yr: 13.8 };
+const STR04 = { xl: S04X, yl: 13.89, yr: 13.97 };
+const STR05 = { xl: S05X, yl: 14.05, yr: 14.14 };
+const STR06 = { xl: S06X, yl: 14.31, yr: 14.39 };
+const STR07 = { xl: S07X, yl: 14.39, yr: 14.48 };
+const STR08 = { xl: S08X, yl: 14.56, yr: 14.65 };
+const STR09 = { xl: S09X, yl: 14.82, yr: 14.9 };
+const STR10 = { xl: S10X, yl: 15.07, yr: 15.16 };
+const STR11 = { xl: S11X, yl: 15.41, yr: 15.58 };
+const STR12 = { xl: S12X, yl: 15.66, yr: 15.75 };
+const STR13 = { xl: S13X, yl: 16.0, yr: 16.17 };
+const STR14 = { xl: S14X, yl: 16.34, yr: 16.51 };
+const STR15 = { xl: S15X, yl: 16.68, yr: 16.85 };
+const STR16 = { xl: S16X, yl: 17.02, yr: 17.19 };
+const STR17 = { xl: S17X, yl: 17.53, yr: 17.7 };
+const STR18 = { xl: S18X, yl: 17.86, yr: 18.03 };
+const STR19 = { xl: S19X, yl: 18.29, yr: 18.46 };
+const STR20 = { xl: S20X, yl: 18.71, yr: 18.97 };
+const STR21 = { xl: S21X, yl: 19.22, yr: 19.39 };
+const STR22 = { xl: S22X, yl: 19.73, yr: 19.9 };
+const STR23 = { xl: S23X, yl: 20.24, yr: 20.4 };
+const STR24 = { xl: S24X, yl: 20.83, yr: 21.08 };
+const STR25 = { xl: S25X, yl: 21.34, yr: 21.59 };
+const STR26 = { xl: S26X, yl: 21.76, yr: 22.01 };
+const STR27 = { xl: S27X, yl: 22.35, yr: 22.61 };
+const STR28 = { xl: S28X, yl: 22.86, yr: 23.11 };
+const STR29 = { xl: S29X, yl: 23.45, yr: 23.71 };
+const STR30 = { xl: S30X, yl: 23.88, yr: 24.13 };
+const STR31 = { xl: S31X, yl: 24.47, yr: 24.72 };
+const STR32 = { xl: S32X, yl: 25.06, yr: 25.32 };
+const STR33 = { xl: S33X, yl: 25.57, yr: 25.82 };
+const STR34 = { xl: S34X, yl: 26.08, yr: 26.5 };
+const STR35 = { xl: S35X, yl: 26.67, yr: 26.92 };
+const STR36 = { xl: S36X, yl: 27.18, yr: 27.43 };
+const STR37 = { xl: S37X, yl: 27.69, yr: 27.94 };
+
+// Sleeper drawing width
+const SDW = 1.62;
+
+// Rail drawing width
+const RDW = 1.01;
+
+// Lowest Straight Rail center position
+const LRC = (2.88 + 3.89) / 2;
+
+// Maximum Support Spacing
+const MSS = 5.0;
+
+const sleeperSupport = (str, railOnly) => {
+  const x = str.xl + SDW / 2;
+  // Top rail support y
+  const yts = (str.yl + str.yr - RDW) / 2;
+  const supports = [support(x, yts), support(x, LRC)];
+  if (!railOnly) {
+    const spaces = Math.ceil((yts - LRC) / MSS);
+    for (let i = 1; i < spaces; ++i) {
+      supports.push(support(x, LRC + ((yts - LRC) * i) / spaces));
+    }
+  }
+  return union(supports);
+};
+
+const supports = () => {
   return union(
-    support(S_5X + SWID / 2, 13.38 - 0.5),
-    support(S_5X + SWID / 2, (13.38 + 3.89) / 2 - 0.5),
-    support(S_5X + SWID / 2, 3.89 - 0.5)
+    sleeperSupport(STR_5),
+    sleeperSupport(STR_4),
+    sleeperSupport(STR_3),
+    sleeperSupport(STR_2, true),
+    sleeperSupport(STR_1),
+    sleeperSupport(STR01),
+    sleeperSupport(STR02),
+    sleeperSupport(STR03),
+    sleeperSupport(STR04),
+    sleeperSupport(STR05),
+    sleeperSupport(STR06, true),
+    sleeperSupport(STR07),
+    sleeperSupport(STR08),
+    sleeperSupport(STR09),
+    sleeperSupport(STR10),
+    sleeperSupport(STR11, true),
+    sleeperSupport(STR12),
+    sleeperSupport(STR13),
+    sleeperSupport(STR14),
+    sleeperSupport(STR15),
+    sleeperSupport(STR16),
+    sleeperSupport(STR17, true),
+    sleeperSupport(STR18),
+    sleeperSupport(STR19),
+    sleeperSupport(STR20),
+    sleeperSupport(STR21),
+    sleeperSupport(STR22),
+    sleeperSupport(STR23),
+    sleeperSupport(STR24, true),
+    sleeperSupport(STR25, true),
+    sleeperSupport(STR26),
+    sleeperSupport(STR27),
+    sleeperSupport(STR28),
+    sleeperSupport(STR29, true),
+    sleeperSupport(STR30),
+    sleeperSupport(STR31),
+    sleeperSupport(STR32, true),
+    sleeperSupport(STR33, true),
+    sleeperSupport(STR34),
+    sleeperSupport(STR35),
+    sleeperSupport(STR36),
+    sleeperSupport(STR37)
   );
 };
 
