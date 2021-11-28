@@ -611,25 +611,26 @@ const sleeper = (
   ).mirroredY();
 };
 
+const L1 = 16.26;
+const L2 = 17.19;
+const L3 = 18.12;
+const L4 = 19.05;
+const L5 = 20.07;
+const L6 = 21.0;
+const L7 = 21.93;
+const L8 = 22.86;
+const L9 = 23.88;
+const L10 = 24.81;
+const L11 = 25.74;
+const L12 = 26.67;
+const L13 = 27.69;
+const L14 = 28.53;
+const L15 = 29.55;
+const L16 = 30.48;
+const L17 = 31.41;
+
 const sleepers = () => {
   // sizes in mm
-  const L1 = 16.26;
-  const L2 = 17.19;
-  const L3 = 18.12;
-  const L4 = 19.05;
-  const L5 = 20.07;
-  const L6 = 21.0;
-  const L7 = 21.93;
-  const L8 = 22.86;
-  const L9 = 23.88;
-  const L10 = 24.81;
-  const L11 = 25.74;
-  const L12 = 26.67;
-  const L13 = 27.69;
-  const L14 = 28.53;
-  const L15 = 29.55;
-  const L16 = 30.48;
-  const L17 = 31.41;
 
   const S_5R = [
     { xl: 2.88, xr: 3.89 },
@@ -637,8 +638,11 @@ const sleepers = () => {
   ];
   const S_4R = S_5R;
   const S_3R = S_5R;
-  const S_1R = S_5R;
 
+  const S_1R = [
+    { xl: 2.88, xr: 5.16 },
+    { xl: 13.55 - (5.16 - 2.88), xr: 13.55 },
+  ];
   const S01R = [
     { xl: 2.88, xr: 5.16 },
     { xl: 13.55 - (5.16 - 2.88), xr: 13.55 },
@@ -830,25 +834,26 @@ const rails = () => {
   const rail1 = rail(
     [
       { xl: S_5X, yl: 3.89 },
-      { xl: S_1X, yr: 3.89 },
+      { xl: S_3X, yr: 3.89 },
     ],
     [
       { xl: S_5X, yl: 2.88 },
-      { xl: S_1X, yr: 2.88 },
+      { xl: S_3X, yr: 2.88 },
     ]
   );
   const rail2 = rail(
     [
       { xl: S_5X, yl: 13.38 },
-      { xl: S_1X, yr: 13.38 },
+      { xl: S_3X, yr: 13.38 },
     ],
     [
       { xl: S_5X, yl: 12.36 },
-      { xl: S_1X, yr: 12.36 },
+      { xl: S_3X, yr: 12.36 },
     ]
   );
   const rail3 = rail(
     [
+      { xl: S_1X, yl: 13.38, yr: 13.38 },
       { xl: S01X, yl: 13.46, yr: 13.55 },
       { xl: S02X, yl: 13.63, yr: 13.72 },
       { xl: S03X, yl: 13.72, yr: 13.8 },
@@ -865,7 +870,7 @@ const rails = () => {
       { xl: S16X, yl: 17.02, yr: 17.19 },
     ],
     [
-      { xl: S01X, yl: 2.88 },
+      { xl: S_1X, yl: 2.88 },
       { xl: S16X, yr: 2.88 },
     ]
   );
@@ -1033,7 +1038,7 @@ const connector = (top) => {
   const connector2D = polygon({
     points: bottomPoints.concat(topPoints.reverse()),
   });
-  return linear_extrude({ height: 0.5 }, connector2D);
+  return linear_extrude({ height: 1.75 }, connector2D);
 };
 
 const connectors = () => {
@@ -1074,13 +1079,19 @@ const connectors = () => {
 };
 
 const support = (x, y) => {
+  const poleRT = 0.4;
+  const poleRB = 1.0;
+  const poleH = 5.1;
   const baseL = 9.0;
   const baseW = 3.0;
   const baseH = 0.3;
-  const poleRT = 0.5;
-  const poleRB = 1.0;
-  const poleH = 5.1;
   const baseZ = -5.0;
+
+  return cylinder({ r1: poleRB, r2: poleRT, h: poleH }).translate([
+    x,
+    y,
+    baseZ,
+  ]);
 
   const base = intersection(
     cube({ size: [baseL, baseW, baseH * 2], center: true }),
@@ -1194,6 +1205,72 @@ const sleeperSupport = (str, railOnly) => {
   return union(supports);
 };
 
+const baseSupport = () => {
+  const extraX = 3.0;
+  const extraY = 3.0;
+  const baseH = 0.3;
+  const baseZ = -5.0;
+
+  const left = STR_5.xl - extraX;
+  const right = STR37.xl + SDW + extraX;
+  const bottom = 0.0 - extraY;
+  const leftTop = L1 + extraY;
+  const rightTop = L17 + extraY;
+
+  return intersection(
+    cube({
+      size: [right - left, rightTop - bottom, baseH],
+      center: false,
+    }).translate([left, bottom, -baseH]),
+    polyhedron({
+      points: [
+        // points at base
+        [left, bottom, 0],
+        [left, leftTop, 0],
+        [right, rightTop, 0],
+        [right, bottom, 0],
+        // apex point
+        [
+          (left + right) / 2,
+          ((rightTop + leftTop) / 2 + bottom) / 2,
+          left - right,
+        ],
+      ],
+      triangles: [
+        [0, 1, 3],
+        [2, 3, 1],
+        [0, 4, 1],
+        [1, 4, 2],
+        [2, 4, 3],
+        [3, 4, 0],
+      ],
+    })
+  ).translate([0, 0, baseZ]);
+
+  return intersection(
+    cube({ size: [baseL, baseW, baseH * 2], center: true }),
+    polyhedron({
+      points: [
+        // points at base
+        [STR_5.xl - baseL / 2, -baseW / 2, 0],
+        [STR_5.xl - baseL / 2, baseW / 2, 0],
+        [baseL / 2, baseW / 2, 0],
+        [baseL / 2, -baseW / 2, 0],
+        // apex point
+        [0, 0, -baseL],
+      ],
+      triangles: [
+        [0, 1, 3],
+        [2, 3, 1],
+        [0, 4, 1],
+        [1, 4, 2],
+        [2, 4, 3],
+        [3, 4, 0],
+      ],
+    })
+  ).translate(0, 0, baseH);
+};
+
 const supports = () => {
   return union(
     sleeperSupport(STR_5),
@@ -1237,7 +1314,8 @@ const supports = () => {
     sleeperSupport(STR34),
     sleeperSupport(STR35),
     sleeperSupport(STR36),
-    sleeperSupport(STR37)
+    sleeperSupport(STR37),
+    baseSupport()
   );
 };
 
