@@ -1,4 +1,7 @@
 /*
+300 px => 1"
+  1 px =>   0.08466666667mm
+
 L17 __                                                                                                                                 __
 L15 __                                                                                                                     __ __ ++ ++ ||  ++ L16
 L13 __                                                                                                            __ __ ++ E3 || || || ||  ++ L14
@@ -41,8 +44,8 @@ const SL15 = 29.55; // 1595 px
 const SL16 = 30.48; // 1584 px
 const SL17 = 31.41; // 1573 px
 
-// Sleeper drawing width
-const SDW = 1.62;
+// Drawing sleeper width
+const DSW = 1.62;
 
 // Sleepers X (left side) position
 // mm = ROUND((px - 807) × 0.08466666667, 2)
@@ -155,9 +158,10 @@ const S37X = 115.32; // 2169 px
               |        |
               +--------+
 */
-const RDW = 1.01;
+// Drawing Rail Widht
+const DRW = 1.01;
 
-/* Rail 1 - Sleeper position, drawing base
+/* Drawing Rail 1 - Sleeper position, drawing base
             
          |  |        |   
          |  | sleeper|
@@ -166,31 +170,31 @@ const RDW = 1.01;
          |  |        |
          |  |   R1   |
          |  |        |
-yl - RDW ▷  +--------+
+yl - DRW ▷  +--------+
          |  |        |
          |  +--------+
          |
          +──△────────△─
-            xl    xl + SDW
+            xl    xl + DSW
 */
-const R1S_5 = { xl: S_5X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S_1 = { xl: S_1X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S00 = { xl: S00X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S01 = { xl: S01X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S16 = { xl: S16X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S18 = { xl: S18X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S23 = { xl: S23X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S26 = { xl: S26X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S28 = { xl: S28X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S30 = { xl: S30X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
-const R1S37 = { xl: S37X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S_5 = { xl: S_5X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S_1 = { xl: S_1X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S00 = { xl: S00X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S01 = { xl: S01X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S16 = { xl: S16X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S18 = { xl: S18X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S23 = { xl: S23X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S26 = { xl: S26X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S28 = { xl: S28X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S30 = { xl: S30X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S37 = { xl: S37X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
 
-/* Rail 1 Guardrail - Sleeper position */
-const R1GS26 = { xl: S26X, yl: 5.0, yr: 4.91 }; //  1885 px, 1886 px
-const R1GS27 = { xl: S27X, yl: 4.91, yr: 4.91 }; // 1886 px, 1886 px
-const R1GS28 = { xl: S28X, yl: 4.91, yr: 4.91 }; // 1886 px, 1886 px
+/* Drawing Guardrail 1  - Sleeper position */
+const DGR1S26 = { xl: S26X, yl: 5.0, yr: 4.91 }; //  1885 px, 1886 px
+const DGR1S27 = { xl: S27X, yl: 4.91, yr: 4.91 }; // 1886 px, 1886 px
+const DGR1S28 = { xl: S28X, yl: 4.91, yr: 4.91 }; // 1886 px, 1886 px
 
-/* Rail 2 - Sleeper position, drawing base
+/* Drawing Rail 2 - Sleeper position, drawing base
 
 
          |  |        |
@@ -201,51 +205,51 @@ const R1GS28 = { xl: S28X, yl: 4.91, yr: 4.91 }; // 1886 px, 1886 px
          |  |   R2   |
          |  |      --+
          |  |   --/  |
-yl - RDW ▷  +--/     |
+yl - DRW ▷  +--/     |
          |  |        |
          |       
          +──△────────△─
-            xl    xl + SDW
+            xl    xl + DSW
 */
-const R2S_5 = { xl: S_5X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
-const R2S_4 = { xl: S_4X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
-const R2S_3 = { xl: S_3X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
-const R2S_2 = { xl: S_2X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
-const R2S_1 = { xl: S_1X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
-const R2S00 = { xl: S00X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
-const R2S01 = { xl: S01X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
-const R2S02 = { xl: S02X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
-const R2S03 = { xl: S03X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
-const R2S04 = { xl: S04X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
-const R2S05 = { xl: S05X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
-const R2S07 = { xl: S07X, yl: 5.25, yr: 5.33 }; //   1882 px, 1881 px
-const R2S08 = { xl: S08X, yl: 5.42, yr: 5.5 }; //    1880 px, 1879 px
-const R2S09 = { xl: S09X, yl: 5.59, yr: 5.67 }; //   1878 px, 1877 px
-const R2S10 = { xl: S10X, yl: 5.76, yr: 5.84 }; //   1876 px, 1875 px
-const R2S12 = { xl: S12X, yl: 6.18, yr: 6.27 }; //   1871 px, 1870 px
-const R2S13 = { xl: S13X, yl: 6.43, yr: 6.6 }; //    1868 px, 1866 px
-const R2S14 = { xl: S14X, yl: 6.77, yr: 6.86 }; //   1864 px, 1863 px
-const R2S15 = { xl: S15X, yl: 7.11, yr: 7.28 }; //   1860 px, 1858 px
-const R2S16 = { xl: S16X, yl: 7.54, yr: 7.7 }; //    1855 px, 1853 px
-const R2S18 = { xl: S18X, yl: 8.21, yr: 8.38 }; //   1847 px, 1845 px
-const R2S19 = { xl: S19X, yl: 8.64, yr: 8.81 }; //   1842 px, 1840 px
-const R2S20 = { xl: S20X, yl: 9.14, yr: 9.31 }; //   1836 px, 1834 px
-const R2S21 = { xl: S21X, yl: 9.57, yr: 9.74 }; //   1831 px, 1829 px
-const R2S22 = { xl: S22X, yl: 10.08, yr: 10.24 }; // 1825 px, 1823 px
-const R2S23 = { xl: S23X, yl: 10.58, yr: 10.75 }; // 1819 px, 1817 px
-const R2S30 = { xl: S30X, yl: 14.22, yr: 14.48 }; // 1776 px, 1773 px
-const R2S31 = { xl: S31X, yl: 14.73, yr: 14.99 }; // 1770 px, 1767 px
-const R2S34 = { xl: S34X, yl: 16.43, yr: 16.68 }; // 1750 px, 1747 px
-const R2S35 = { xl: S35X, yl: 16.93, yr: 17.19 }; // 1744 px, 1741 px
-const R2S36 = { xl: S36X, yl: 17.53, yr: 17.78 }; // 1737 px, 1734 px
-const R2S37 = { xl: S37X, yl: 18.03, yr: 18.29 }; // 1731 px, 1728 px
+const DR2S_5 = { xl: S_5X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
+const DR2S_4 = { xl: S_4X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
+const DR2S_3 = { xl: S_3X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
+const DR2S_2 = { xl: S_2X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
+const DR2S_1 = { xl: S_1X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
+const DR2S00 = { xl: S00X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
+const DR2S01 = { xl: S01X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
+const DR2S02 = { xl: S02X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
+const DR2S03 = { xl: S03X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
+const DR2S04 = { xl: S04X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
+const DR2S05 = { xl: S05X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
+const DR2S07 = { xl: S07X, yl: 5.25, yr: 5.33 }; //   1882 px, 1881 px
+const DR2S08 = { xl: S08X, yl: 5.42, yr: 5.5 }; //    1880 px, 1879 px
+const DR2S09 = { xl: S09X, yl: 5.59, yr: 5.67 }; //   1878 px, 1877 px
+const DR2S10 = { xl: S10X, yl: 5.76, yr: 5.84 }; //   1876 px, 1875 px
+const DR2S12 = { xl: S12X, yl: 6.18, yr: 6.27 }; //   1871 px, 1870 px
+const DR2S13 = { xl: S13X, yl: 6.43, yr: 6.6 }; //    1868 px, 1866 px
+const DR2S14 = { xl: S14X, yl: 6.77, yr: 6.86 }; //   1864 px, 1863 px
+const DR2S15 = { xl: S15X, yl: 7.11, yr: 7.28 }; //   1860 px, 1858 px
+const DR2S16 = { xl: S16X, yl: 7.54, yr: 7.7 }; //    1855 px, 1853 px
+const DR2S18 = { xl: S18X, yl: 8.21, yr: 8.38 }; //   1847 px, 1845 px
+const DR2S19 = { xl: S19X, yl: 8.64, yr: 8.81 }; //   1842 px, 1840 px
+const DR2S20 = { xl: S20X, yl: 9.14, yr: 9.31 }; //   1836 px, 1834 px
+const DR2S21 = { xl: S21X, yl: 9.57, yr: 9.74 }; //   1831 px, 1829 px
+const DR2S22 = { xl: S22X, yl: 10.08, yr: 10.24 }; // 1825 px, 1823 px
+const DR2S23 = { xl: S23X, yl: 10.58, yr: 10.75 }; // 1819 px, 1817 px
+const DR2S30 = { xl: S30X, yl: 14.22, yr: 14.48 }; // 1776 px, 1773 px
+const DR2S31 = { xl: S31X, yl: 14.73, yr: 14.99 }; // 1770 px, 1767 px
+const DR2S34 = { xl: S34X, yl: 16.43, yr: 16.68 }; // 1750 px, 1747 px
+const DR2S35 = { xl: S35X, yl: 16.93, yr: 17.19 }; // 1744 px, 1741 px
+const DR2S36 = { xl: S36X, yl: 17.53, yr: 17.78 }; // 1737 px, 1734 px
+const DR2S37 = { xl: S37X, yl: 18.03, yr: 18.29 }; // 1731 px, 1728 px
 
-/* Rail 2 Guardrail - Sleeper position */
-const R2GS26 = { xl: S26X, yl: 13.38, yr: 13.46 }; // 1786 px, 1785 px
-const R2GS27 = { xl: S27X, yl: 13.72, yr: 13.97 }; // 1782 px, 1779 px
-const R2GS28 = { xl: S28X, yl: 14.31, yr: 14.56 }; // 1775 px, 1772 px
+/* Drawing Guardrail 2 - Sleeper position */
+const DGR2S26 = { xl: S26X, yl: 13.38, yr: 13.46 }; // 1786 px, 1785 px
+const DGR2S27 = { xl: S27X, yl: 13.72, yr: 13.97 }; // 1782 px, 1779 px
+const DGR2S28 = { xl: S28X, yl: 14.31, yr: 14.56 }; // 1775 px, 1772 px
 
-/* Rail 3 - Sleeper position, drawing base
+/* Drawing Rail 3 - Sleeper position, drawing base
             
          |  |        |   
          |  | sleeper|
@@ -254,30 +258,30 @@ const R2GS28 = { xl: S28X, yl: 14.31, yr: 14.56 }; // 1775 px, 1772 px
          |  |        |
          |  |   R3   |
          |  |        |
-yl - RDW ▷  +--------+
+yl - DRW ▷  +--------+
          |  |        |
          |
          +──△────────△─
-            xl    xl + SDW
+            xl    xl + DSW
 */
-const R3S_5 = { xl: S_5X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S_1 = { xl: S_1X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S00 = { xl: S00X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S01 = { xl: S01X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S16 = { xl: S16X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S18 = { xl: S18X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S23 = { xl: S23X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S26 = { xl: S26X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S28 = { xl: S28X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S30 = { xl: S30X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R3S37 = { xl: S37X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S_5 = { xl: S_5X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S_1 = { xl: S_1X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S00 = { xl: S00X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S01 = { xl: S01X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S16 = { xl: S16X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S18 = { xl: S18X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S23 = { xl: S23X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S26 = { xl: S26X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S28 = { xl: S28X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S30 = { xl: S30X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR3S37 = { xl: S37X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
 
-/* Rail 3 Guardrail - Sleeper position */
-const R3GS26 = { xl: S26X, yl: 11.09 + RDW, yr: 11.26 + RDW }; // 1813 px, 1811 px
-const R3GS27 = { xl: S27X, yl: 11.26 + RDW, yr: 11.26 + RDW }; // 1886 px, 1886 px
-const R3GS28 = { xl: S28X, yl: 11.26 + RDW, yr: 11.26 + RDW }; // 1886 px, 1886 px
+/* Drawing Guardrail 3 - Sleeper position */
+const DGR3S26 = { xl: S26X, yl: 11.09 + DRW, yr: 11.26 + DRW }; // 1813 px, 1811 px
+const DGR3S27 = { xl: S27X, yl: 11.26 + DRW, yr: 11.26 + DRW }; // 1886 px, 1886 px
+const DGR3S28 = { xl: S28X, yl: 11.26 + DRW, yr: 11.26 + DRW }; // 1886 px, 1886 px
 
-/* Rail 4 - Sleeper position, drawing base
+/* Drawing Rail 4 - Sleeper position, drawing base
             +--------+
          |  | sleeper|
       yr ▷  |      --+
@@ -286,61 +290,145 @@ const R3GS28 = { xl: S28X, yl: 11.26 + RDW, yr: 11.26 + RDW }; // 1886 px, 1886 
          |  |   R4   |
          |  |      --+
          |  |   --/  |
-yl - RDW ▷  +--/     |
+yl - DRW ▷  +--/     |
          |  |        |
          |       
          +──△────────△─
-            xl    xl + SDW
+            xl    xl + DSW
 */
-const R4S_5 = { xl: S_5X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R4S_4 = { xl: S_4X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R4S_3 = { xl: S_3X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R4S_2 = { xl: S_2X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R4S_1 = { xl: S_1X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
-const R4S00 = { xl: S00X, yl: 13.38, yr: 13.46 }; // 1786 px, 1785 px
-const R4S01 = { xl: S01X, yl: 13.46, yr: 13.55 }; // 1785 px, 1784 px
-const R4S02 = { xl: S02X, yl: 13.63, yr: 13.72 }; // 1783 px, 1782 px
-const R4S03 = { xl: S03X, yl: 13.72, yr: 13.8 }; //  1782 px, 1781 px
-const R4S04 = { xl: S04X, yl: 13.89, yr: 13.97 }; // 1780 px, 1779 px
-const R4S05 = { xl: S05X, yl: 14.05, yr: 14.14 }; // 1778 px, 1777 px
-const R4S06 = { xl: S06X, yl: 14.31, yr: 14.39 }; // 1775 px, 1774 px
-const R4S07 = { xl: S07X, yl: 14.39, yr: 14.48 }; // 1774 px, 1773 px
-const R4S08 = { xl: S08X, yl: 14.56, yr: 14.65 }; // 1772 px, 1771 px
-const R4S09 = { xl: S09X, yl: 14.82, yr: 14.9 }; //  1769 px, 1768 px
-const R4S10 = { xl: S10X, yl: 15.07, yr: 15.16 }; // 1766 px, 1766 px
-const R4S11 = { xl: S11X, yl: 15.41, yr: 15.58 }; // 1762 px, 1760 px
-const R4S12 = { xl: S12X, yl: 15.66, yr: 15.75 }; // 1759 px, 1758 px
-const R4S13 = { xl: S13X, yl: 16.0, yr: 16.17 }; //  1755 px, 1753 px
-const R4S14 = { xl: S14X, yl: 16.34, yr: 16.51 }; // 1751 px, 1749 px
-const R4S15 = { xl: S15X, yl: 16.68, yr: 16.85 }; // 1747 px, 1745 px
-const R4S16 = { xl: S16X, yl: 17.02, yr: 17.19 }; // 1743 px, 1741 px
-const R4S17 = { xl: S17X, yl: 17.53, yr: 17.7 }; //  1737 px, 1735 px
-const R4S18 = { xl: S18X, yl: 17.86, yr: 18.03 }; // 1733 px, 1731 px
-const R4S19 = { xl: S19X, yl: 18.29, yr: 18.46 }; // 1728 px, 1726 px
-const R4S20 = { xl: S20X, yl: 18.71, yr: 18.97 }; // 1723 px, 1720 px
-const R4S21 = { xl: S21X, yl: 19.22, yr: 19.39 }; // 1717 px, 1715 px
-const R4S22 = { xl: S22X, yl: 19.73, yr: 19.9 }; //  1711 px, 1709 px
-const R4S23 = { xl: S23X, yl: 20.24, yr: 20.4 }; //  1705 px, 1703 px
-const R4S24 = { xl: S24X, yl: 20.83, yr: 21.08 }; // 1698 px, 1695 px
-const R4S25 = { xl: S25X, yl: 21.34, yr: 21.59 }; // 1692 px, 1689 px
-const R4S26 = { xl: S26X, yl: 21.76, yr: 22.01 }; // 1687 px, 1684 px
-const R4S27 = { xl: S27X, yl: 22.35, yr: 22.61 }; // 1680 px, 1677 px
-const R4S28 = { xl: S28X, yl: 22.86, yr: 23.11 }; // 1674 px, 1671 px
-const R4S29 = { xl: S29X, yl: 23.45, yr: 23.71 }; // 1667 px, 1664 px
-const R4S30 = { xl: S30X, yl: 23.88, yr: 24.13 }; // 1662 px, 1659 px
-const R4S31 = { xl: S31X, yl: 24.47, yr: 24.72 }; // 1655 px, 1652 px
-const R4S32 = { xl: S32X, yl: 25.06, yr: 25.32 }; // 1648 px, 1645 px
-const R4S33 = { xl: S33X, yl: 25.57, yr: 25.82 }; // 1642 px, 1639 px
-const R4S34 = { xl: S34X, yl: 26.08, yr: 26.5 }; //  1636 px, 1631 px
-const R4S35 = { xl: S35X, yl: 26.67, yr: 26.92 }; // 1629 px, 1626 px
-const R4S36 = { xl: S36X, yl: 27.18, yr: 27.43 }; // 1623 px, 1620 px
-const R4S37 = { xl: S37X, yl: 27.69, yr: 27.94 }; // 1617 px, 1614 px
+const DR4S_5 = { xl: S_5X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR4S_4 = { xl: S_4X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR4S_3 = { xl: S_3X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR4S_2 = { xl: S_2X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR4S_1 = { xl: S_1X, yl: 13.38, yr: 13.38 }; // 1786 px, 1786 px
+const DR4S00 = { xl: S00X, yl: 13.38, yr: 13.46 }; // 1786 px, 1785 px
+const DR4S01 = { xl: S01X, yl: 13.46, yr: 13.55 }; // 1785 px, 1784 px
+const DR4S02 = { xl: S02X, yl: 13.63, yr: 13.72 }; // 1783 px, 1782 px
+const DR4S03 = { xl: S03X, yl: 13.72, yr: 13.8 }; //  1782 px, 1781 px
+const DR4S04 = { xl: S04X, yl: 13.89, yr: 13.97 }; // 1780 px, 1779 px
+const DR4S05 = { xl: S05X, yl: 14.05, yr: 14.14 }; // 1778 px, 1777 px
+const DR4S06 = { xl: S06X, yl: 14.31, yr: 14.39 }; // 1775 px, 1774 px
+const DR4S07 = { xl: S07X, yl: 14.39, yr: 14.48 }; // 1774 px, 1773 px
+const DR4S08 = { xl: S08X, yl: 14.56, yr: 14.65 }; // 1772 px, 1771 px
+const DR4S09 = { xl: S09X, yl: 14.82, yr: 14.9 }; //  1769 px, 1768 px
+const DR4S10 = { xl: S10X, yl: 15.07, yr: 15.16 }; // 1766 px, 1766 px
+const DR4S11 = { xl: S11X, yl: 15.41, yr: 15.58 }; // 1762 px, 1760 px
+const DR4S12 = { xl: S12X, yl: 15.66, yr: 15.75 }; // 1759 px, 1758 px
+const DR4S13 = { xl: S13X, yl: 16.0, yr: 16.17 }; //  1755 px, 1753 px
+const DR4S14 = { xl: S14X, yl: 16.34, yr: 16.51 }; // 1751 px, 1749 px
+const DR4S15 = { xl: S15X, yl: 16.68, yr: 16.85 }; // 1747 px, 1745 px
+const DR4S16 = { xl: S16X, yl: 17.02, yr: 17.19 }; // 1743 px, 1741 px
+const DR4S17 = { xl: S17X, yl: 17.53, yr: 17.7 }; //  1737 px, 1735 px
+const DR4S18 = { xl: S18X, yl: 17.86, yr: 18.03 }; // 1733 px, 1731 px
+const DR4S19 = { xl: S19X, yl: 18.29, yr: 18.46 }; // 1728 px, 1726 px
+const DR4S20 = { xl: S20X, yl: 18.71, yr: 18.97 }; // 1723 px, 1720 px
+const DR4S21 = { xl: S21X, yl: 19.22, yr: 19.39 }; // 1717 px, 1715 px
+const DR4S22 = { xl: S22X, yl: 19.73, yr: 19.9 }; //  1711 px, 1709 px
+const DR4S23 = { xl: S23X, yl: 20.24, yr: 20.4 }; //  1705 px, 1703 px
+const DR4S24 = { xl: S24X, yl: 20.83, yr: 21.08 }; // 1698 px, 1695 px
+const DR4S25 = { xl: S25X, yl: 21.34, yr: 21.59 }; // 1692 px, 1689 px
+const DR4S26 = { xl: S26X, yl: 21.76, yr: 22.01 }; // 1687 px, 1684 px
+const DR4S27 = { xl: S27X, yl: 22.35, yr: 22.61 }; // 1680 px, 1677 px
+const DR4S28 = { xl: S28X, yl: 22.86, yr: 23.11 }; // 1674 px, 1671 px
+const DR4S29 = { xl: S29X, yl: 23.45, yr: 23.71 }; // 1667 px, 1664 px
+const DR4S30 = { xl: S30X, yl: 23.88, yr: 24.13 }; // 1662 px, 1659 px
+const DR4S31 = { xl: S31X, yl: 24.47, yr: 24.72 }; // 1655 px, 1652 px
+const DR4S32 = { xl: S32X, yl: 25.06, yr: 25.32 }; // 1648 px, 1645 px
+const DR4S33 = { xl: S33X, yl: 25.57, yr: 25.82 }; // 1642 px, 1639 px
+const DR4S34 = { xl: S34X, yl: 26.08, yr: 26.5 }; //  1636 px, 1631 px
+const DR4S35 = { xl: S35X, yl: 26.67, yr: 26.92 }; // 1629 px, 1626 px
+const DR4S36 = { xl: S36X, yl: 27.18, yr: 27.43 }; // 1623 px, 1620 px
+const DR4S37 = { xl: S37X, yl: 27.69, yr: 27.94 }; // 1617 px, 1614 px
 
-/* Rail 4 Guardrail - Sleeper position */
-const R4GS26 = { xl: S26X, yl: 19.64 + RDW, yr: 19.9 + RDW }; //  1712 px, 1709 px
-const R4GS27 = { xl: S27X, yl: 20.15 + RDW, yr: 20.4 + RDW }; //  1706 px, 1703 px
-const R4GS28 = { xl: S28X, yl: 20.66 + RDW, yr: 20.83 + RDW }; // 1700 px, 1698 px
+/* Drawing Guardrail 4  - Sleeper position */
+const DGR4S26 = { xl: S26X, yl: 19.64 + DRW, yr: 19.9 + DRW }; //  1712 px, 1709 px
+const DGR4S27 = { xl: S27X, yl: 20.15 + DRW, yr: 20.4 + DRW }; //  1706 px, 1703 px
+const DGR4S28 = { xl: S28X, yl: 20.66 + DRW, yr: 20.83 + DRW }; // 1700 px, 1698 px
 
+/*
+  Because drawing is not represent correct rails width and distance between the rails 
+  we should adjust rails position.
+  Rails curvature will be preserved from rail 2 and rail 3
+
+  Assumptions:
+    - We are using ME N-scale code 55 rails
+    - Distance between top of the rails is 9.00 mm 
+*/
+const N_TOP_DISTANCE = 9.0;
+const MEN55_TOP_WIDTH = 0.66;
+const MEN55_FOOT_WIDTH = 1.37;
+const RAIL_CLEARANCE = 0.3;
+
+const R1S_5_CENTER = (SL1 - N_TOP_DISTANCE - MEN55_TOP_WIDTH) / 2;
+const R4S_5_CENTER = (SL1 + N_TOP_DISTANCE + MEN55_TOP_WIDTH) / 2;
+
+const R1D2A_SHIFT = R1S_5_CENTER - DR1S_5.yl;
+const R4D2A_SHIFT = R4S_5_CENTER - DR4S_5.yl;
+
+// Rail Actual Width
+const RAW = MEN55_FOOT_WIDTH + RAIL_CLEARANCE;
+
+const drawingToActualShift = (d, s) => ({
+  xl: d.xl,
+  yl: d.yl + s,
+  yr: d.yr + s,
+});
+
+const R1S_5 = drawingToActualShift(DR1S_5, R1D2A_SHIFT);
+const R1S_1 = drawingToActualShift(DR1S_1, R1D2A_SHIFT);
+const R1S00 = drawingToActualShift(DR1S00, R1D2A_SHIFT);
+const R1S01 = drawingToActualShift(DR1S01, R1D2A_SHIFT);
+const R1S16 = drawingToActualShift(DR1S16, R1D2A_SHIFT);
+const R1S18 = drawingToActualShift(DR1S18, R1D2A_SHIFT);
+const R1S23 = drawingToActualShift(DR1S23, R1D2A_SHIFT);
+const R1S26 = drawingToActualShift(DR1S26, R1D2A_SHIFT);
+const R1S28 = drawingToActualShift(DR1S28, R1D2A_SHIFT);
+const R1S30 = drawingToActualShift(DR1S30, R1D2A_SHIFT);
+const R1S37 = drawingToActualShift(DR1S37, R1D2A_SHIFT);
+
+const R4S_5 = drawingToActualShift(DR4S_5, R4D2A_SHIFT);
+const R4S_4 = drawingToActualShift(DR4S_4, R4D2A_SHIFT);
+const R4S_3 = drawingToActualShift(DR4S_3, R4D2A_SHIFT);
+const R4S_2 = drawingToActualShift(DR4S_2, R4D2A_SHIFT);
+const R4S_1 = drawingToActualShift(DR4S_1, R4D2A_SHIFT);
+const R4S00 = drawingToActualShift(DR4S00, R4D2A_SHIFT);
+const R4S01 = drawingToActualShift(DR4S01, R4D2A_SHIFT);
+const R4S02 = drawingToActualShift(DR4S02, R4D2A_SHIFT);
+const R4S03 = drawingToActualShift(DR4S03, R4D2A_SHIFT);
+const R4S04 = drawingToActualShift(DR4S04, R4D2A_SHIFT);
+const R4S05 = drawingToActualShift(DR4S05, R4D2A_SHIFT);
+const R4S06 = drawingToActualShift(DR4S06, R4D2A_SHIFT);
+const R4S07 = drawingToActualShift(DR4S07, R4D2A_SHIFT);
+const R4S08 = drawingToActualShift(DR4S08, R4D2A_SHIFT);
+const R4S09 = drawingToActualShift(DR4S09, R4D2A_SHIFT);
+const R4S10 = drawingToActualShift(DR4S10, R4D2A_SHIFT);
+const R4S11 = drawingToActualShift(DR4S11, R4D2A_SHIFT);
+const R4S12 = drawingToActualShift(DR4S12, R4D2A_SHIFT);
+const R4S13 = drawingToActualShift(DR4S13, R4D2A_SHIFT);
+const R4S14 = drawingToActualShift(DR4S14, R4D2A_SHIFT);
+const R4S15 = drawingToActualShift(DR4S15, R4D2A_SHIFT);
+const R4S16 = drawingToActualShift(DR4S16, R4D2A_SHIFT);
+const R4S17 = drawingToActualShift(DR4S17, R4D2A_SHIFT);
+const R4S18 = drawingToActualShift(DR4S18, R4D2A_SHIFT);
+const R4S19 = drawingToActualShift(DR4S19, R4D2A_SHIFT);
+const R4S20 = drawingToActualShift(DR4S20, R4D2A_SHIFT);
+const R4S21 = drawingToActualShift(DR4S21, R4D2A_SHIFT);
+const R4S22 = drawingToActualShift(DR4S22, R4D2A_SHIFT);
+const R4S23 = drawingToActualShift(DR4S23, R4D2A_SHIFT);
+const R4S24 = drawingToActualShift(DR4S24, R4D2A_SHIFT);
+const R4S25 = drawingToActualShift(DR4S25, R4D2A_SHIFT);
+const R4S26 = drawingToActualShift(DR4S26, R4D2A_SHIFT);
+const R4S27 = drawingToActualShift(DR4S27, R4D2A_SHIFT);
+const R4S28 = drawingToActualShift(DR4S28, R4D2A_SHIFT);
+const R4S29 = drawingToActualShift(DR4S29, R4D2A_SHIFT);
+const R4S30 = drawingToActualShift(DR4S30, R4D2A_SHIFT);
+const R4S31 = drawingToActualShift(DR4S31, R4D2A_SHIFT);
+const R4S32 = drawingToActualShift(DR4S32, R4D2A_SHIFT);
+const R4S33 = drawingToActualShift(DR4S33, R4D2A_SHIFT);
+const R4S34 = drawingToActualShift(DR4S34, R4D2A_SHIFT);
+const R4S35 = drawingToActualShift(DR4S35, R4D2A_SHIFT);
+const R4S36 = drawingToActualShift(DR4S36, R4D2A_SHIFT);
+const R4S37 = drawingToActualShift(DR4S37, R4D2A_SHIFT);
 /*
 300 px => 1"
 1 px =>   0.08466666667mm
@@ -664,7 +752,7 @@ const rail = (top, bottom) => {
       points.push([p.xl, p.yl + slack]);
     }
     if (p.yr !== undefined) {
-      points.push([p.xl + SDW, p.yr + slack]);
+      points.push([p.xl + DSW, p.yr + slack]);
     }
     return points;
   });
@@ -674,7 +762,7 @@ const rail = (top, bottom) => {
       points.push([p.xl, p.yl - slack]);
     }
     if (p.yr !== undefined) {
-      points.push([p.xl + SDW, p.yr - slack]);
+      points.push([p.xl + DSW, p.yr - slack]);
     }
     return points;
   });
@@ -864,29 +952,16 @@ const rails = () => {
 };
 
 const connector = (top) => {
-  const shiftTop = 0.3;
-  const shiftBottom = 1.0 + 0.3;
+  const shift = RAW / 2;
 
-  const topPoints = top.flatMap((p) => {
-    const points = [];
-    if (p.yl !== undefined) {
-      points.push([p.xl, p.yl + shiftTop]);
-    }
-    if (p.yr !== undefined) {
-      points.push([p.xl + SDW, p.yr + shiftTop]);
-    }
-    return points;
-  });
-  const bottomPoints = top.flatMap((p) => {
-    const points = [];
-    if (p.yl !== undefined) {
-      points.push([p.xl, p.yl - shiftBottom]);
-    }
-    if (p.yr !== undefined) {
-      points.push([p.xl + SDW, p.yr - shiftBottom]);
-    }
-    return points;
-  });
+  const topPoints = top.flatMap((p) => [
+    [p.xl, p.yl + shift],
+    [p.xl + DSW, p.yr + shift],
+  ]);
+  const bottomPoints = top.flatMap((p) => [
+    [p.xl, p.yl - shift],
+    [p.xl + DSW, p.yr - shift],
+  ]);
   const connector2D = polygon({
     points: bottomPoints.concat(topPoints.reverse()),
   });
@@ -894,38 +969,47 @@ const connector = (top) => {
 };
 
 const connectors = () => {
-  const connector1 = connector([
-    { xl: S_5X, yl: 3.89 },
-    { xl: S37X, yl: 3.89 },
-  ]);
+  const connector1 = connector([R1S_5, R1S37]);
   const connector2 = connector([
-    { xl: S_5X, yl: 13.38 },
-    { xl: S00X, yl: 13.38 },
-    { xl: S01X, yl: 13.46, yr: 13.55 },
-    { xl: S02X, yl: 13.63, yr: 13.72 },
-    { xl: S03X, yl: 13.72, yr: 13.8 },
-    { xl: S04X, yl: 13.89, yr: 13.97 },
-    { xl: S05X, yl: 14.05, yr: 14.14 },
-    { xl: S07X, yl: 14.39, yr: 14.48 },
-    { xl: S08X, yl: 14.56, yr: 14.65 },
-    { xl: S09X, yl: 14.82, yr: 14.9 },
-    { xl: S10X, yl: 15.07, yr: 15.16 },
-    { xl: S12X, yl: 15.66, yr: 15.75 },
-    { xl: S13X, yl: 16.0, yr: 16.17 },
-    { xl: S14X, yl: 16.34, yr: 16.51 },
-    { xl: S15X, yl: 16.68, yr: 16.85 },
-    { xl: S16X, yl: 17.02, yr: 17.19 },
-    { xl: S18X, yl: 17.86, yr: 18.03 },
-    { xl: S19X, yl: 18.29, yr: 18.46 },
-    { xl: S20X, yl: 18.71, yr: 18.97 },
-    { xl: S21X, yl: 19.22, yr: 19.39 },
-    { xl: S22X, yl: 19.73, yr: 19.9 },
-    { xl: S23X, yl: 20.24, yr: 20.4 },
-    { xl: S26X, yl: 21.76, yr: 22.01 },
-    { xl: S27X, yl: 22.35, yr: 22.61 },
-    { xl: S28X, yl: 22.86, yr: 23.11 },
-    { xl: S30X, yl: 23.88 },
-    { xl: S37X, yr: 27.94 },
+    R4S_5,
+    R4S00,
+    R4S01,
+    R4S02,
+    R4S03,
+    R4S04,
+    R4S05,
+    R4S06,
+    R4S07,
+    R4S08,
+    R4S09,
+    R4S10,
+    R4S11,
+    R4S12,
+    R4S13,
+    R4S14,
+    R4S15,
+    R4S16,
+    R4S17,
+    R4S18,
+    R4S19,
+    R4S20,
+    R4S21,
+    R4S22,
+    R4S23,
+    R4S24,
+    R4S25,
+    R4S26,
+    R4S27,
+    R4S28,
+    R4S29,
+    R4S30,
+    R4S31,
+    R4S32,
+    R4S33,
+    R4S34,
+    R4S35,
+    R4S36,
+    R4S37,
   ]);
   return union(connector1, connector2);
 };
@@ -934,9 +1018,6 @@ const support = (x, y) => {
   const poleRT = 0.4;
   const poleRB = 1.0;
   const poleH = 5.1;
-  const baseL = 9.0;
-  const baseW = 3.0;
-  const baseH = 0.3;
   const baseZ = -5.0;
 
   return cylinder({ r1: poleRB, r2: poleRT, h: poleH }).translate([
@@ -944,49 +1025,21 @@ const support = (x, y) => {
     y,
     baseZ,
   ]);
-
-  const base = intersection(
-    cube({ size: [baseL, baseW, baseH * 2], center: true }),
-    polyhedron({
-      points: [
-        // points at base
-        [-baseL / 2, -baseW / 2, 0],
-        [-baseL / 2, baseW / 2, 0],
-        [baseL / 2, baseW / 2, 0],
-        [baseL / 2, -baseW / 2, 0],
-        // apex point
-        [0, 0, -baseL],
-      ],
-      triangles: [
-        [0, 1, 3],
-        [2, 3, 1],
-        [0, 4, 1],
-        [1, 4, 2],
-        [2, 4, 3],
-        [3, 4, 0],
-      ],
-    })
-  ).translate(0, 0, baseH);
-
-  const pole = cylinder({ r1: poleRB, r2: poleRT, h: poleH });
-  return union(pole, base).translate([x, y, baseZ]);
 };
 
-// Lowest Straight Rail center position
-const LRC = (2.88 + 3.89) / 2;
-
-// Maximum Support Spacing
-const MSS = 5.0;
-
 const sleeperSupport = (str, railOnly) => {
-  const x = str.xl + SDW / 2;
-  // Top rail support y
-  const yts = (str.yl + str.yr - RDW) / 2;
-  const supports = [support(x, yts), support(x, LRC)];
+  // Maximum Support Spacing
+  const MSS = 5.0;
+
+  const x = str.xl + DSW / 2;
+  const yts = (str.yl + str.yr) / 2;
+  const ybs = R1S00.yl;
+
+  const supports = [support(x, yts), support(x, ybs)];
   if (!railOnly) {
-    const spaces = Math.ceil((yts - LRC) / MSS);
+    const spaces = Math.ceil((yts - ybs) / MSS);
     for (let i = 1; i < spaces; ++i) {
-      supports.push(support(x, LRC + ((yts - LRC) * i) / spaces));
+      supports.push(support(x, ybs + ((yts - ybs) * i) / spaces));
     }
   }
   return union(supports);
@@ -999,7 +1052,7 @@ const baseSupport = () => {
   const baseZ = -5.0;
 
   const left = R4S_5.xl - extraX;
-  const right = R4S37.xl + SDW + extraX;
+  const right = R4S37.xl + DSW + extraX;
   const bottom = 0.0 - extraY;
   const leftTop = SL1 + extraY;
   const rightTop = SL17 + extraY;
@@ -1033,29 +1086,6 @@ const baseSupport = () => {
       ],
     })
   ).translate([0, 0, baseZ]);
-
-  return intersection(
-    cube({ size: [baseL, baseW, baseH * 2], center: true }),
-    polyhedron({
-      points: [
-        // points at base
-        [R4S_5.xl - baseL / 2, -baseW / 2, 0],
-        [R4S_5.xl - baseL / 2, baseW / 2, 0],
-        [baseL / 2, baseW / 2, 0],
-        [baseL / 2, -baseW / 2, 0],
-        // apex point
-        [0, 0, -baseL],
-      ],
-      triangles: [
-        [0, 1, 3],
-        [2, 3, 1],
-        [0, 4, 1],
-        [1, 4, 2],
-        [2, 4, 3],
-        [3, 4, 0],
-      ],
-    })
-  ).translate(0, 0, baseH);
 };
 
 const supports = () => {
