@@ -178,6 +178,7 @@ yl - DRW ▷  +--------+
             xl    xl + DSW
 */
 const DR1S_5 = { xl: S_5X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
+const DR1S_3 = { xl: S_3X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
 const DR1S_1 = { xl: S_1X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
 const DR1S00 = { xl: S00X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
 const DR1S01 = { xl: S01X, yl: 3.89, yr: 3.89 }; // 1898 px, 1898 px
@@ -375,6 +376,7 @@ const drawingToActualShift = (d, s) => ({
 });
 
 const R1S_5 = drawingToActualShift(DR1S_5, R1D2A_SHIFT);
+const R1S_3 = drawingToActualShift(DR1S_3, R1D2A_SHIFT);
 const R1S_1 = drawingToActualShift(DR1S_1, R1D2A_SHIFT);
 const R1S00 = drawingToActualShift(DR1S00, R1D2A_SHIFT);
 const R1S01 = drawingToActualShift(DR1S01, R1D2A_SHIFT);
@@ -429,6 +431,29 @@ const R4S34 = drawingToActualShift(DR4S34, R4D2A_SHIFT);
 const R4S35 = drawingToActualShift(DR4S35, R4D2A_SHIFT);
 const R4S36 = drawingToActualShift(DR4S36, R4D2A_SHIFT);
 const R4S37 = drawingToActualShift(DR4S37, R4D2A_SHIFT);
+
+const COS_9D = 0.9877;
+const PARALLEL_0D = N_TOP_DISTANCE + MEN55_TOP_WIDTH;
+const PARALLEL_9D = PARALLEL_0D / COS_9D;
+
+const shiftRS = (rs, shift) => {
+  return { xl: rs.xl, yl: rs.yl + shift, yr: rs.yr + shift };
+};
+
+const R2S18 = shiftRS(R4S18, -PARALLEL_9D);
+const R2S19 = shiftRS(R4S19, -PARALLEL_9D);
+const R2S20 = shiftRS(R4S20, -PARALLEL_9D);
+const R2S21 = shiftRS(R4S21, -PARALLEL_9D);
+const R2S22 = shiftRS(R4S22, -PARALLEL_9D);
+const R2S23 = shiftRS(R4S23, -PARALLEL_9D);
+const R2S30 = shiftRS(R4S30, -PARALLEL_9D);
+const R2S37 = shiftRS(R4S37, -PARALLEL_9D);
+
+const R3S18 = shiftRS(R1S18, PARALLEL_0D);
+const R3S23 = shiftRS(R1S23, PARALLEL_0D);
+const R3S30 = shiftRS(R1S30, PARALLEL_0D);
+const R3S37 = shiftRS(R1S37, PARALLEL_0D);
+
 /*
 300 px => 1"
 1 px =>   0.08466666667mm
@@ -744,210 +769,72 @@ const sleepers = () => {
   );
 };
 
-const rail = (top, bottom) => {
-  const slack = 0.3;
-  const topPoints = top.flatMap((p) => {
-    const points = [];
-    if (p.yl !== undefined) {
-      points.push([p.xl, p.yl + slack]);
-    }
-    if (p.yr !== undefined) {
-      points.push([p.xl + DSW, p.yr + slack]);
-    }
-    return points;
-  });
-  const bottomPoints = bottom.flatMap((p) => {
-    const points = [];
-    if (p.yl !== undefined) {
-      points.push([p.xl, p.yl - slack]);
-    }
-    if (p.yr !== undefined) {
-      points.push([p.xl + DSW, p.yr - slack]);
-    }
-    return points;
-  });
+const railCut = (top, bottom) => {
+  const shift = RAW / 2;
+  const topPoints = top.flatMap((p) => [
+    [p.xl, p.yl + shift],
+    [p.xl + DSW, p.yr + shift],
+  ]);
+  const bottomPoints = bottom.flatMap((p) => [
+    [p.xl, p.yl - shift],
+    [p.xl + DSW, p.yr - shift],
+  ]);
   const rail2D = polygon({ points: bottomPoints.concat(topPoints.reverse()) });
   return linear_extrude({ height: 1.45 }, rail2D).translate([0, 0, 2.75]);
 };
 
-const rails = () => {
-  const rail1 = rail(
+const railCuts = () => {
+  const railCut1 = railCut([R1S_5, R1S_3], [R1S_5, R1S_3]);
+  const railCut2 = railCut([R4S_5, R4S_3], [R4S_5, R4S_3]);
+  const railCut3 = railCut(
     [
-      { xl: S_5X, yl: 3.89 },
-      { xl: S_3X, yr: 3.89 },
+      R4S_1,
+      R4S01,
+      R4S02,
+      R4S03,
+      R4S04,
+      R4S05,
+      R4S07,
+      R4S08,
+      R4S09,
+      R4S10,
+      R4S12,
+      R4S13,
+      R4S14,
+      R4S15,
+      R4S16,
     ],
-    [
-      { xl: S_5X, yl: 2.88 },
-      { xl: S_3X, yr: 2.88 },
-    ]
-  );
-  const rail2 = rail(
-    [
-      { xl: S_5X, yl: 13.38 },
-      { xl: S_3X, yr: 13.38 },
-    ],
-    [
-      { xl: S_5X, yl: 12.36 },
-      { xl: S_3X, yr: 12.36 },
-    ]
-  );
-  const rail3 = rail(
-    [
-      { xl: S_1X, yl: 13.38, yr: 13.38 },
-      { xl: S01X, yl: 13.46, yr: 13.55 },
-      { xl: S02X, yl: 13.63, yr: 13.72 },
-      { xl: S03X, yl: 13.72, yr: 13.8 },
-      { xl: S04X, yl: 13.89, yr: 13.97 },
-      { xl: S05X, yl: 14.05, yr: 14.14 },
-      { xl: S07X, yl: 14.39, yr: 14.48 },
-      { xl: S08X, yl: 14.56, yr: 14.65 },
-      { xl: S09X, yl: 14.82, yr: 14.9 },
-      { xl: S10X, yl: 15.07, yr: 15.16 },
-      { xl: S12X, yl: 15.66, yr: 15.75 },
-      { xl: S13X, yl: 16.0, yr: 16.17 },
-      { xl: S14X, yl: 16.34, yr: 16.51 },
-      { xl: S15X, yl: 16.68, yr: 16.85 },
-      { xl: S16X, yl: 17.02, yr: 17.19 },
-    ],
-    [
-      { xl: S_1X, yl: 2.88 },
-      { xl: S16X, yr: 2.88 },
-    ]
+    [R1S_1, R1S16]
   );
 
-  const rail4 = rail(
-    [
-      { xl: S18X, yl: 3.89 },
-      { xl: S23X, yr: 3.89 },
-    ],
-    [
-      { xl: S18X, yl: 2.88 },
-      { xl: S23X, yr: 2.88 },
-    ]
+  const railCut4 = railCut([R1S18, R1S23], [R1S18, R1S23]);
+  const railCut5 = railCut(
+    [R2S18, R2S19, R2S20, R2S21, R2S22, R2S23],
+    [R2S18, R2S19, R2S20, R2S21, R2S22, R2S23]
   );
-
-  const rail5 = rail(
-    [
-      { xl: S18X, yl: 8.21, yr: 8.38 },
-      { xl: S19X, yl: 8.64, yr: 8.81 },
-      { xl: S20X, yl: 9.14, yr: 9.31 },
-      { xl: S21X, yl: 9.57, yr: 9.74 },
-      { xl: S22X, yl: 10.08, yr: 10.24 },
-      { xl: S23X, yl: 10.58, yr: 10.75 },
-    ],
-    [
-      { xl: S18X, yl: 7.2, yr: 7.37 },
-      { xl: S19X, yl: 7.62, yr: 7.79 },
-      { xl: S20X, yl: 8.13, yr: 8.3 },
-      { xl: S21X, yl: 8.55, yr: 8.72 },
-      { xl: S22X, yl: 9.06, yr: 9.23 },
-      { xl: S23X, yl: 9.48, yr: 9.74 },
-    ]
+  const railCut6 = railCut([R3S18, R3S23], [R3S18, R3S23]);
+  const railCut7 = railCut(
+    [R4S18, R4S19, R4S20, R4S21, R4S22, R4S23],
+    [R4S18, R4S19, R4S20, R4S21, R4S22, R4S23]
   );
-  const rail6 = rail(
-    [
-      { xl: S18X, yl: 13.38 },
-      { xl: S23X, yr: 13.38 },
-    ],
-    [
-      { xl: S18X, yl: 12.36 },
-      { xl: S23X, yr: 12.36 },
-    ]
-  );
-  const rail7 = rail(
-    [
-      { xl: S18X, yl: 17.86, yr: 18.03 },
-      { xl: S19X, yl: 18.29, yr: 18.46 },
-      { xl: S20X, yl: 18.71, yr: 18.97 },
-      { xl: S21X, yl: 19.22, yr: 19.39 },
-      { xl: S22X, yl: 19.73, yr: 19.9 },
-      { xl: S23X, yl: 20.24, yr: 20.4 },
-    ],
-    [
-      { xl: S18X, yl: 16.85, yr: 17.02 },
-      { xl: S19X, yl: 17.27, yr: 17.44 },
-      { xl: S20X, yl: 17.7, yr: 17.95 },
-      { xl: S21X, yl: 18.2, yr: 18.37 },
-      { xl: S22X, yl: 18.71, yr: 18.88 },
-      { xl: S23X, yl: 19.22, yr: 19.39 },
-    ]
-  );
-  const rail8 = rail(
-    [
-      { xl: S26X, yl: 21.76, yr: 22.01 },
-      { xl: S27X, yl: 22.35, yr: 22.61 },
-      { xl: S28X, yl: 22.86, yr: 23.11 },
-    ],
-    [
-      { xl: S26X, yl: 2.88 },
-      { xl: S28X, yr: 2.88 },
-    ]
-  );
-  const rail9 = rail(
-    [
-      { xl: S30X, yl: 3.89 },
-      { xl: S37X, yr: 3.89 },
-    ],
-    [
-      { xl: S30X, yl: 2.88 },
-      { xl: S37X, yr: 2.88 },
-    ]
-  );
-  const rail10 = rail(
-    [
-      { xl: S30X, yl: 14.22 },
-      { xl: S31X, yr: 14.99 },
-    ],
-    [
-      { xl: S30X, yl: 12.36 },
-      { xl: S31X, yr: 12.36 },
-    ]
-  );
-  const rail11 = rail(
-    [
-      { xl: S30X, yl: 23.88 },
-      { xl: S37X, yr: 27.94 },
-    ],
-    [
-      { xl: S30X, yl: 22.86 },
-      { xl: S37X, yr: 26.84 },
-    ]
-  );
-  const rail12 = rail(
-    [
-      { xl: S34X, yl: 13.38 },
-      { xl: S37X, yr: 13.38 },
-    ],
-    [
-      { xl: S34X, yl: 12.36 },
-      { xl: S37X, yr: 12.36 },
-    ]
-  );
-  const rail13 = rail(
-    [
-      { xl: S34X, yl: 16.43 },
-      { xl: S37X, yr: 18.29 },
-    ],
-    [
-      { xl: S34X, yl: 15.32 },
-      { xl: S37X, yr: 17.19 },
-    ]
-  );
-
+  const railCut8 = railCut([R4S26, R4S27, R4S28], [R1S26, R1S28]);
+  const railCut9 = railCut([R1S30, R1S37], [R1S30, R1S37]);
+  const railCut10 = railCut([R3S30, R3S37], [R3S30, R3S37]);
+  const railCut11 = railCut([R2S30, R2S37], [R2S30, R2S37]);
+  const railCut12 = railCut([R4S30, R4S37], [R4S30, R4S37]);
   return union(
-    rail1,
-    rail2,
-    rail3,
-    rail4,
-    rail5,
-    rail6,
-    rail7,
-    rail8,
-    rail9,
-    rail10,
-    rail11,
-    rail12,
-    rail13
+    railCut1,
+    railCut2,
+    railCut3,
+    railCut4,
+    railCut5,
+    railCut6,
+    railCut7,
+    railCut8,
+    railCut9,
+    railCut10,
+    railCut11,
+    railCut12
   );
 };
 
@@ -1137,5 +1024,5 @@ const supports = () => {
 };
 
 const main = () => {
-  return union(difference(sleepers(), rails()), connectors(), supports());
+  return union(difference(sleepers(), railCuts()), connectors(), supports());
 };
