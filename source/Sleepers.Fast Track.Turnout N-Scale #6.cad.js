@@ -455,11 +455,6 @@ const R3S30 = shiftRS(R1S30, PARALLEL_0D);
 const R3S37 = shiftRS(R1S37, PARALLEL_0D);
 
 /*
-300 px => 1"
-1 px =>   0.08466666667mm
-~ 1 px => 0.08477842003mm
-
-
 
                            I     H                                           E     D
 ▷ Y3                   ┌───○─────○───┐                                   ┌───○─────○───┐                          ┌───○─────○───┐
@@ -486,7 +481,6 @@ const R3S37 = shiftRS(R1S37, PARALLEL_0D);
            X1 X2    X3 X4
 
 Rail foot height: 0.40m
-Rail support height: 0.40m
 Slepper height under rail: 2.75mm 
 
 Y0 = 0.00mm
@@ -504,9 +498,10 @@ Scale rail distance: 12.87mm - 3.38mm = 9.49mm
 Scale: 9.49/1760 = 1/185
 
 N-Scale:
-Rail Center to slide: 240/185 = 1.30
-Middle Slide width: 1.30mm
-Side Slide width: 1.62mm
+Rail Center to slide: 240/185 = 1.30mm
+Middle Slide width: 240/185 = 1.30mm
+Side Slide width: 300/185 = 1.62mm
+
 Sleeper width top: 170mm/185 = 0.92mm
 Sleeper width bottom: 300mm/185 = 1.62mm
 
@@ -515,7 +510,6 @@ Rail width width actual: 1.33mm
 Rail side slack: 0.13mm
 Rail width with slack: 1.60mm
 Rail top side support: 40mm/160 = 0.25mm
-Rail top side support (): 40mm/160 = 1.25mm
 
 Drawing Left Bound: X#L
 Drawing Right Bound: X#R
@@ -526,36 +520,56 @@ X#C = X#R + (1.33mm-1.01mm)/2 + 0.13mm + 0.25mm = X#R + 0.54mm
 X#D = X#B + 2.34mm = X#R + 2.88mm
 
 **/
+const PROTO_TRACK_GUAGE = 1524;
+const MODEL_TRACK_GUAGE = 9;
+const MODEL_SCALE = MODEL_TRACK_GUAGE / PROTO_TRACK_GUAGE; // 1:169
+
+const UNITRACK_HEIGHT = 7.2;
+const MEN55_HEIGHT = 1.45;
+const MEN55_FOOT_HEIGHT = 0.4;
+const ROADBAED_HEIGHT = 3.0;
+
+const SLEEPER_Y_UNDER_RAIL = UNITRACK_HEIGHT - MEN55_HEIGHT - ROADBAED_HEIGHT;
+
+const SLEEPER_X_SLOPE_HEIGHT = 230 * MODEL_SCALE;
+const SLEEPER_X_BASE = 300 * MODEL_SCALE;
+const SLEEPER_X_TOP = 160 * MODEL_SCALE;
+
+const SLEEPER_Y_TOP_HEIGHT = SLEEPER_Y_UNDER_RAIL + MEN55_FOOT_HEIGHT;
+const SLEEPER_Y_SIDE_HEIGHT = SLEEPER_Y_TOP_HEIGHT - 80 * MODEL_SCALE;
+const SLEEPER_Y_MIDDLE_HEIGHT = SLEEPER_Y_TOP_HEIGHT - 85 * MODEL_SCALE;
+
+const SLEEPER_Y_TOP_WIDTH = 480 * MODEL_SCALE;
+const SLEEPER_Y_SIDE_SLOPE = 300 * MODEL_SCALE;
+const SLEEPER_Y_MIDDLE_SLOPE = 240 * MODEL_SCALE;
 
 const sleeper = (
   rails /* {xl: number, xr: number}[] */,
   l /* sleeper length */
 ) => {
-  const Y3 = 3.15;
-  const Y2 = 2.48;
-  const Y1 = 1.71;
   const Y0 = 0.0;
-  const dxA = 2.1;
-  const dxB = 0.8;
-  const dxC = 1.6;
-  const x = 0.0;
-  const widthTop = 0.92;
-  const widthBottom = 1.62;
+  const X0 = 0.0;
+  const XL = l;
+  const dxB = SLEEPER_Y_TOP_WIDTH / 2;
+  const dxA = dxB + SLEEPER_Y_MIDDLE_SLOPE;
 
   const points = rails.flatMap((r) => [
-    [r.xl - dxA, Y2],
-    [r.xl - dxB, Y3],
-    [r.xr + dxB, Y3],
-    [r.xr + dxA, Y2],
+    [r.xl - dxA, SLEEPER_Y_MIDDLE_HEIGHT],
+    [r.xl - dxB, SLEEPER_Y_TOP_HEIGHT],
+    [r.xr + dxB, SLEEPER_Y_TOP_HEIGHT],
+    [r.xr + dxA, SLEEPER_Y_MIDDLE_HEIGHT],
   ]);
-  points[0][0] = x;
-  points[1][0] = x + dxC;
-  points[points.length - 2][0] = l - dxC;
-  points[points.length - 1][0] = l;
-  points.push([l, Y0]);
-  points.push([x, Y0]);
+
+  points[0] = [X0, SLEEPER_Y_SIDE_HEIGHT];
+  points[1] = [X0 + SLEEPER_Y_SIDE_SLOPE, SLEEPER_Y_TOP_HEIGHT];
+  points[points.length - 2] = [XL - SLEEPER_Y_SIDE_SLOPE, SLEEPER_Y_TOP_HEIGHT];
+  points[points.length - 1] = [XL, SLEEPER_Y_SIDE_HEIGHT];
+
+  points.push([XL, Y0]);
+  points.push([X0, Y0]);
+
   const shape2D = polygon({ points: points.reverse() });
-  const shape3D = linear_extrude({ height: widthBottom }, shape2D);
+  const shape3D = linear_extrude({ height: SLEEPER_X_BASE }, shape2D);
 
   /*
 ▷ Y3        E ○─────○ D
@@ -568,22 +582,23 @@ const sleeper = (
 ▷ Y0     A ○───────────○ B
 
            △──△─────△──△
-           X1 X2    X3 X4
+           X0 X1    X2 X3
 */
 
-  const X1 = 0.0;
-  const X2 = X1 + (widthBottom - widthTop) / 2;
-  const X4 = X1 + widthBottom;
-  const X3 = X4 - (X2 - X1);
+  const X1 = X0 + (SLEEPER_X_BASE - SLEEPER_X_TOP) / 2;
+  const X2 = X1 + SLEEPER_X_TOP;
+  const X3 = X0 + SLEEPER_X_BASE;
+  const Y1 = SLEEPER_Y_TOP_HEIGHT - SLEEPER_X_SLOPE_HEIGHT;
+  const Y3 = SLEEPER_Y_TOP_HEIGHT;
 
   const profile2D = polygon({
     points: [
-      [X1, Y0],
-      [X4, Y0],
-      [X4, Y1],
-      [X3, Y3],
+      [X0, Y0],
+      [X3, Y0],
+      [X3, Y1],
       [X2, Y3],
-      [X1, Y1],
+      [X1, Y3],
+      [X0, Y1],
     ],
   });
   const profile3D = linear_extrude({ height: l }, profile2D);
@@ -749,14 +764,14 @@ const sleepers = () => {
     translate([S12X, 0, 0], sleeper(S12R, SL4)),
     translate([S13X, 0, 0], sleeper(S13R, SL4)),
     translate([S14X, 0, 0], sleeper(S14R, SL4)),
-    translate([S15X, 0, 0], sleeper(S15R, SL5)),
-    translate([S16X, 0, 0], sleeper(S16R, SL5)),
+    //translate([S15X, 0, 0], sleeper(S15R, SL5)),
+    //translate([S16X, 0, 0], sleeper(S16R, SL5)),
     translate([S18X, 0, 0], sleeper(S18R, SL6)),
     translate([S19X, 0, 0], sleeper(S19R, SL7)),
-    translate([S20X, 0, 0], sleeper(S20R, SL7)),
-    translate([S21X, 0, 0], sleeper(S21R, SL8)),
-    translate([S22X, 0, 0], sleeper(S22R, SL8)),
-    translate([S23X, 0, 0], sleeper(S23R, SL9)),
+    // translate([S20X, 0, 0], sleeper(S20R, SL7)),
+    // translate([S21X, 0, 0], sleeper(S21R, SL8)),
+    // translate([S22X, 0, 0], sleeper(S22R, SL8)),
+    // translate([S23X, 0, 0], sleeper(S23R, SL9)),
     translate([S26X, 0, 0], sleeper(S26R, SL10)),
     translate([S27X, 0, 0], sleeper(S27R, SL11)),
     translate([S28X, 0, 0], sleeper(S28R, SL11)),
