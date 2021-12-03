@@ -216,7 +216,7 @@ const DR2S_5 = { xl: S_5X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
 const DR2S_4 = { xl: S_4X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
 const DR2S_3 = { xl: S_3X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
 const DR2S_2 = { xl: S_2X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
-const DR2S_1 = { xl: S_1X, yl: 3.89, yr: 3.89 }; //   1898 px, 1898 px
+const DR2S_1 = { xl: S_1X, yl: 5.16, yr: 5.16 }; //   1898 px, 1898 px
 const DR2S00 = { xl: S00X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
 const DR2S01 = { xl: S01X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
 const DR2S02 = { xl: S02X, yl: 5.16, yr: 5.16 }; //   1883 px, 1883 px
@@ -440,86 +440,57 @@ const shiftRS = (rs, shift) => {
   return { xl: rs.xl, yl: rs.yl + shift, yr: rs.yr + shift };
 };
 
+const R2S_1 = shiftRS(R4S_1, DR2S_1.yl - DR4S_1.yl);
+const R2S01 = shiftRS(R4S01, DR2S01.yl - DR4S01.yl);
+const R2S02 = shiftRS(R4S02, DR2S02.yl - DR4S02.yl);
+const R2S03 = shiftRS(R4S03, DR2S03.yl - DR4S03.yl);
+const R2S04 = shiftRS(R4S04, DR2S04.yl - DR4S04.yl);
+const R2S05 = shiftRS(R4S05, DR2S05.yl - DR4S05.yl);
+const R2S07 = shiftRS(R4S07, DR2S07.yl - DR4S07.yl);
+const R2S08 = shiftRS(R4S08, DR2S08.yl - DR4S08.yl);
+const R2S09 = shiftRS(R4S09, DR2S09.yl - DR4S09.yl);
+const R2S10 = shiftRS(R4S10, DR2S10.yl - DR4S10.yl);
+const R2S12 = shiftRS(R4S12, DR2S12.yl - DR4S12.yl);
+const R2S13 = shiftRS(R4S13, DR2S13.yl - DR4S13.yl);
+const R2S14 = shiftRS(R4S14, DR2S14.yl - DR4S14.yl);
+const R2S15 = shiftRS(R4S15, DR2S15.yl - DR4S15.yl);
+const R2S16 = shiftRS(R4S16, DR2S16.yl - DR4S16.yl);
 const R2S18 = shiftRS(R4S18, -PARALLEL_9D);
 const R2S19 = shiftRS(R4S19, -PARALLEL_9D);
 const R2S20 = shiftRS(R4S20, -PARALLEL_9D);
 const R2S21 = shiftRS(R4S21, -PARALLEL_9D);
 const R2S22 = shiftRS(R4S22, -PARALLEL_9D);
 const R2S23 = shiftRS(R4S23, -PARALLEL_9D);
+const R2S26 = shiftRS(R4S26, -PARALLEL_9D);
+const R2S27 = shiftRS(R4S27, -PARALLEL_9D);
+const R2S28 = shiftRS(R4S28, -PARALLEL_9D);
 const R2S30 = shiftRS(R4S30, -PARALLEL_9D);
+const R2S31 = shiftRS(R4S31, -PARALLEL_9D);
+const R2S34 = shiftRS(R4S34, -PARALLEL_9D);
+const R2S35 = shiftRS(R4S35, -PARALLEL_9D);
+const R2S36 = shiftRS(R4S36, -PARALLEL_9D);
 const R2S37 = shiftRS(R4S37, -PARALLEL_9D);
 
+const R3S_1 = shiftRS(R4S_1, DR1S_1.yl - DR2S_1.yl);
+const R3S01 = shiftRS(R4S01, DR1S_1.yl - DR2S01.yl);
+const R3S02 = shiftRS(R4S02, DR1S_1.yl - DR2S02.yl);
+const R3S03 = shiftRS(R4S03, DR1S_1.yl - DR2S03.yl);
+const R3S04 = shiftRS(R4S04, DR1S_1.yl - DR2S04.yl);
+const R3S05 = shiftRS(R4S05, DR1S_1.yl - DR2S05.yl);
+const R3S07 = shiftRS(R4S07, DR1S_1.yl - DR2S07.yl);
+const R3S08 = shiftRS(R4S08, DR1S_1.yl - DR2S08.yl);
+const R3S09 = shiftRS(R4S09, DR1S_1.yl - DR2S09.yl);
+const R3S10 = shiftRS(R4S10, DR1S_1.yl - DR2S10.yl);
+const R3S12 = shiftRS(R4S12, DR1S_1.yl - DR2S12.yl);
+const R3S13 = shiftRS(R4S13, DR1S_1.yl - DR2S13.yl);
+const R3S14 = shiftRS(R4S14, DR1S_1.yl - DR2S14.yl);
+const R3S15 = shiftRS(R4S15, DR1S_1.yl - DR2S15.yl);
+const R3S16 = shiftRS(R4S16, DR1S_1.yl - DR2S16.yl);
 const R3S18 = shiftRS(R1S18, PARALLEL_0D);
 const R3S23 = shiftRS(R1S23, PARALLEL_0D);
 const R3S30 = shiftRS(R1S30, PARALLEL_0D);
 const R3S37 = shiftRS(R1S37, PARALLEL_0D);
 
-/*
-
-                           I     H                                           E     D
-▷ Y3                   ┌───○─────○───┐                                   ┌───○─────○───┐                          ┌───○─────○───┐
-│               ┌──────┘             └──────┐                     ┌──────┘             └──────┐            ┌──────┘             └──────┐
-▷ Y2      J ○───┘                           └───○─────────────○───┘                           └───○────○───┘                           └───○ C
-│           │                                   G             F                                                                            │
-│           │                                                                                                                              │
-│           │                                                                                                                              │
-▷ Y0      A ○──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────○ B
-
-            △──────────────△─────△──────────────△─────────────△──────────────△─────△──────────────△────△──────────────△─────△──────────────△
-           X0A            X0B   X0C           X0D           X1A            X1B   X1C            X1D  X2A            X2B   X2C            X2D
-
-▷ Y3        E ○─────○ D
-|            /       \
-|           /         \
-▷ Y1     F ○           ○ C
-│          │           │
-│          │           │
-│          │           │
-▷ Y0     A ○───────────○ B
-
-           △──△─────△──△
-           X1 X2    X3 X4
-
-Rail foot height: 0.40m
-Slepper height under rail: 2.75mm 
-
-Y0 = 0.00mm
-Y1 = 2.75mm - (193/185 = 1.04)mm = 1.71mm
-Y2 = 2.75mm - (50/185 = 0.27)mm = 2.48mm
-Y3 = 2.75mm + 0.40mm = 3.15mm
-
-Russian Sleeper prototype:
-Rail Center to slide: 240mm
-Slide width: 240mm
-Slide to Sleeper Center: 300mm
-Rail Distance: 1760mm
-
-Scale rail distance: 12.87mm - 3.38mm = 9.49mm
-Scale: 9.49/1760 = 1/185
-
-N-Scale:
-Rail Center to slide: 240/185 = 1.30mm
-Middle Slide width: 240/185 = 1.30mm
-Side Slide width: 300/185 = 1.62mm
-
-Sleeper width top: 170mm/185 = 0.92mm
-Sleeper width bottom: 300mm/185 = 1.62mm
-
-Rail width on drawing: 1.01mm
-Rail width width actual: 1.33mm
-Rail side slack: 0.13mm
-Rail width with slack: 1.60mm
-Rail top side support: 40mm/160 = 0.25mm
-
-Drawing Left Bound: X#L
-Drawing Right Bound: X#R
-
-X#A = X#B - 1.30mm = X#L - 2.10mm
-X#B = X#L + 1.01mm/2 - 1.30mm = X#L - 0.80mm 
-X#C = X#R + (1.33mm-1.01mm)/2 + 0.13mm + 0.25mm = X#R + 0.54mm
-X#D = X#B + 2.34mm = X#R + 2.88mm
-
-**/
 const PROTO_TRACK_GUAGE = 1524;
 const MODEL_TRACK_GUAGE = 9;
 const MODEL_SCALE = MODEL_TRACK_GUAGE / PROTO_TRACK_GUAGE; // 1:169
@@ -543,17 +514,27 @@ const SLEEPER_Y_TOP_WIDTH = 480 * MODEL_SCALE;
 const SLEEPER_Y_SIDE_SLOPE = 300 * MODEL_SCALE;
 const SLEEPER_Y_MIDDLE_SLOPE = 240 * MODEL_SCALE;
 
-const sleeper = (
-  rails /* {xl: number, xr: number}[] */,
-  l /* sleeper length */
-) => {
+const sleeperShape = (lenght, tops /* {xl: number, xr: number}[] */) => {
+  /*
+                           M     L                                           I     H                                  E     D
+▷ Y3                   ┌───○─────○───┐                                   ┌───○─────○───┐                          ┌───○─────○───┐
+│               ┌──────┘             └──────┐                     ┌──────┘             └──────┐            ┌──────┘             └──────┐
+▷ Y2      N ○───┘                           └───○─────────────○───┘                           └───○────○───┘                           └───○ C
+│           │                                   K             J                                   G    F                                   │
+│           │                                                                                                                              │
+│           │                                                                                                                              │
+▷ Y0      A ○──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────○ B
+
+            △──────────────△─────△──────────────△─────────────△──────────────△─────△──────────────△────△──────────────△─────△──────────────△
+           X0A            X0B   X0C           X0D           X1A            X1B   X1C            X1D  X2A            X2B   X2C            X2D
+*/
   const Y0 = 0.0;
   const X0 = 0.0;
-  const XL = l;
+  const XL = lenght;
   const dxB = SLEEPER_Y_TOP_WIDTH / 2;
   const dxA = dxB + SLEEPER_Y_MIDDLE_SLOPE;
 
-  const points = rails.flatMap((r) => [
+  const points = tops.flatMap((r) => [
     [r.xl - dxA, SLEEPER_Y_MIDDLE_HEIGHT],
     [r.xl - dxB, SLEEPER_Y_TOP_HEIGHT],
     [r.xr + dxB, SLEEPER_Y_TOP_HEIGHT],
@@ -601,7 +582,7 @@ const sleeper = (
       [X0, Y1],
     ],
   });
-  const profile3D = linear_extrude({ height: l }, profile2D);
+  const profile3D = linear_extrude({ height: lenght }, profile2D);
 
   return intersection(
     shape3D.mirroredX().rotateZ(90).rotateY(90),
@@ -609,178 +590,60 @@ const sleeper = (
   ).mirroredY();
 };
 
+const sleeper = (length, rails) => {
+  const MIN_TOP_DISTANCE = SLEEPER_Y_TOP_WIDTH + 2 * SLEEPER_Y_MIDDLE_SLOPE;
+  const tops = [];
+  let position = S_5X;
+  rails.forEach((r) => {
+    let xl = Math.min(r.yl, r.yr);
+    let xr = Math.max(r.yl, r.yr);
+    if (tops.length == 0 || xl - tops[tops.length - 1].xr > MIN_TOP_DISTANCE) {
+      tops.push({ xl, xr });
+    } else {
+      tops[tops.length - 1].xr = xr;
+    }
+    if (r.xl > position) {
+      position = r.xl;
+    }
+  });
+  return translate([position, 0, 0], sleeperShape(length, tops));
+};
+
 const sleepers = () => {
-  // sizes in mm
-
-  const S_5R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 13.38 },
-  ];
-  const S_4R = S_5R;
-  const S_3R = S_5R;
-
-  const S_1R = [
-    { xl: 2.88, xr: 5.16 },
-    { xl: 13.55 - (5.16 - 2.88), xr: 13.55 },
-  ];
-  const S01R = [
-    { xl: 2.88, xr: 5.16 },
-    { xl: 13.55 - (5.16 - 2.88), xr: 13.55 },
-  ];
-  const S02R = [
-    { xl: 2.88, xr: 5.16 },
-    { xl: 13.72 - (5.16 - 2.88), xr: 13.72 },
-  ];
-  const S03R = [
-    { xl: 2.88, xr: 5.16 },
-    { xl: 13.8 - (5.16 - 2.88), xr: 13.8 },
-  ];
-  const S04R = [
-    { xl: 2.88, xr: 5.16 },
-    { xl: 13.97 - (5.16 - 2.88), xr: 13.97 },
-  ];
-  const S05R = [
-    { xl: 2.88, xr: 5.16 },
-    { xl: 14.14 - (5.16 - 2.88), xr: 14.14 },
-  ];
-  const S07R = [
-    { xl: 2.88, xr: 5.33 },
-    { xl: 14.48 - (5.33 - 2.88), xr: 4.48 },
-  ];
-  const S08R = [
-    { xl: 2.88, xr: 5.5 },
-    { xl: 14.65 - (5.5 - 2.88), xr: 14.65 },
-  ];
-  const S09R = [
-    { xl: 2.88, xr: 5.67 },
-    { xl: 14.9 - (5.67 - 2.88), xr: 14.9 },
-  ];
-  const S10R = [
-    { xl: 2.88, xr: 5.84 },
-    { xl: 15.16 - (5.84 - 2.88), xr: 15.16 },
-  ];
-  const S12R = [
-    { xl: 2.88, xr: 6.27 },
-    { xl: 15.75 - (6.27 - 2.88), xr: 15.75 },
-  ];
-  const S13R = [
-    { xl: 2.88, xr: 6.6 },
-    { xl: 16.17 - (6.6 - 2.88), xr: 16.17 },
-  ];
-  const S14R = [
-    { xl: 2.88, xr: 6.86 },
-    { xl: 16.51 - (6.86 - 2.88), xr: 16.51 },
-  ];
-  const S15R = [
-    { xl: 2.88, xr: 7.28 },
-    { xl: 16.85 - (7.28 - 2.88), xr: 16.85 },
-  ];
-  const S16R = [
-    { xl: 2.88, xr: 7.7 },
-    { xl: 17.36 - (7.7 - 2.88), xr: 17.36 },
-  ];
-  const S18R = [{ xl: 2.88, xr: 18.03 }];
-  const S19R = [{ xl: 2.88, xr: 18.46 }];
-  const S20R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 8.13, xr: 13.38 },
-    { xl: 17.7, xr: 18.97 },
-  ];
-  const S21R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 8.55, xr: 13.38 },
-    { xl: 18.2, xr: 19.39 },
-  ];
-  const S22R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 9.06, xr: 13.38 },
-    { xl: 18.71, xr: 19.9 },
-  ];
-  const S23R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 9.48, xr: 13.38 },
-    { xl: 19.22, xr: 20.4 },
-  ];
-  const S26R = [
-    { xl: 2.88, xr: 5.0 },
-    { xl: 11.09, xr: 13.46 },
-    { xl: 19.64, xr: 22.01 },
-  ];
-  const S27R = [
-    { xl: 2.88, xr: 4.91 },
-    { xl: 11.26, xr: 13.97 },
-    { xl: 20.15, xr: 22.61 },
-  ];
-  const S28R = [
-    { xl: 2.88, xr: 4.91 },
-    { xl: 11.26, xr: 14.56 },
-    { xl: 20.66, xr: 23.11 },
-  ];
-  const S30R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 14.48 },
-    { xl: 22.86, xr: 24.13 },
-  ];
-  const S31R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 14.99 },
-    { xl: 23.37, xr: 24.72 },
-  ];
-  const S34R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 16.68 },
-    { xl: 25.06, xr: 26.5 },
-  ];
-  const S35R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 17.19 },
-    { xl: 25.57, xr: 26.92 },
-  ];
-  const S36R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 17.78 },
-    { xl: 26.08, xr: 27.43 },
-  ];
-  const S37R = [
-    { xl: 2.88, xr: 3.89 },
-    { xl: 12.36, xr: 18.29 },
-    { xl: 26.59, xr: 27.94 },
-  ];
-
   return union(
-    translate([S_5X, 0, 0], sleeper(S_5R, SL1)),
-    translate([S_4X, 0, 0], sleeper(S_4R, SL1)),
-    translate([S_3X, 0, 0], sleeper(S_3R, SL1)),
-    translate([S_1X, 0, 0], sleeper(S_1R, SL1)),
-    translate([S01X, 0, 0], sleeper(S01R, SL2)),
-    translate([S02X, 0, 0], sleeper(S02R, SL2)),
-    translate([S03X, 0, 0], sleeper(S03R, SL2)),
-    translate([S04X, 0, 0], sleeper(S04R, SL2)),
-    translate([S05X, 0, 0], sleeper(S05R, SL2)),
-    translate([S07X, 0, 0], sleeper(S07R, SL2)),
-    translate([S08X, 0, 0], sleeper(S08R, SL3)),
-    translate([S09X, 0, 0], sleeper(S09R, SL3)),
-    translate([S10X, 0, 0], sleeper(S10R, SL3)),
-    translate([S12X, 0, 0], sleeper(S12R, SL4)),
-    translate([S13X, 0, 0], sleeper(S13R, SL4)),
-    translate([S14X, 0, 0], sleeper(S14R, SL4)),
-    //translate([S15X, 0, 0], sleeper(S15R, SL5)),
-    //translate([S16X, 0, 0], sleeper(S16R, SL5)),
-    translate([S18X, 0, 0], sleeper(S18R, SL6)),
-    translate([S19X, 0, 0], sleeper(S19R, SL7)),
-    // translate([S20X, 0, 0], sleeper(S20R, SL7)),
-    // translate([S21X, 0, 0], sleeper(S21R, SL8)),
-    // translate([S22X, 0, 0], sleeper(S22R, SL8)),
-    // translate([S23X, 0, 0], sleeper(S23R, SL9)),
-    translate([S26X, 0, 0], sleeper(S26R, SL10)),
-    translate([S27X, 0, 0], sleeper(S27R, SL11)),
-    translate([S28X, 0, 0], sleeper(S28R, SL11)),
-    translate([S30X, 0, 0], sleeper(S30R, SL13)),
-    translate([S31X, 0, 0], sleeper(S31R, SL13)),
-    translate([S34X, 0, 0], sleeper(S34R, SL15)),
-    translate([S35X, 0, 0], sleeper(S35R, SL16)),
-    translate([S36X, 0, 0], sleeper(S36R, SL16)),
-    translate([S37X, 0, 0], sleeper(S37R, SL17))
+    sleeper(SL1, [R1S_5, R4S_5]),
+    sleeper(SL1, [R1S_5, R4S_4]),
+    sleeper(SL1, [R1S_5, R4S_3]),
+    sleeper(SL1, [R1S_5, R2S_1, R3S_1, R4S_1]),
+    sleeper(SL2, [R1S_5, R2S01, R3S01, R4S01]),
+    sleeper(SL2, [R1S_5, R2S02, R3S02, R4S02]),
+    sleeper(SL2, [R1S_5, R2S03, R3S03, R4S03]),
+    sleeper(SL2, [R1S_5, R2S04, R3S04, R4S04]),
+    sleeper(SL2, [R1S_5, R2S05, R3S05, R4S05]),
+    sleeper(SL2, [R1S_5, R2S07, R3S07, R4S07]),
+    sleeper(SL3, [R1S_5, R2S08, R3S08, R4S08]),
+    sleeper(SL3, [R1S_5, R2S09, R3S09, R4S09]),
+    sleeper(SL3, [R1S_5, R2S10, R3S10, R4S10]),
+    sleeper(SL4, [R1S_5, R2S12, R3S12, R4S12]),
+    sleeper(SL4, [R1S_5, R2S13, R3S13, R4S13]),
+    sleeper(SL4, [R1S_5, R2S14, R3S14, R4S14]),
+    sleeper(SL5, [R1S_5, R2S15, R3S15, R4S15]),
+    sleeper(SL5, [R1S_5, R2S16, R3S16, R4S16]),
+    sleeper(SL6, [R1S_5, R2S18, R3S18, R4S18]),
+    sleeper(SL7, [R1S_5, R2S19, R3S18, R4S19]),
+    sleeper(SL7, [R1S_5, R2S20, R3S18, R4S20]),
+    sleeper(SL8, [R1S_5, R2S21, R3S18, R4S21]),
+    sleeper(SL8, [R1S_5, R2S22, R3S18, R4S22]),
+    sleeper(SL9, [R1S_5, R2S23, R3S23, R4S23]),
+    sleeper(SL10, [R1S_5, DGR1S26, DGR3S26, DGR2S26, DGR4S26, R4S26]),
+    sleeper(SL11, [R1S_5, DGR1S27, DGR3S27, DGR2S27, DGR4S27, R4S26]),
+    sleeper(SL11, [R1S_5, DGR1S28, DGR3S28, DGR2S28, DGR4S28, R4S26]),
+    sleeper(SL13, [R1S_5, R3S23, R2S30, R4S30]),
+    sleeper(SL13, [R1S_5, R3S23, R2S31, R4S31]),
+    sleeper(SL15, [R1S_5, R3S23, R2S34, R4S34]),
+    sleeper(SL16, [R1S_5, R3S23, R2S35, R4S35]),
+    sleeper(SL16, [R1S_5, R3S23, R2S36, R4S36]),
+    sleeper(SL17, [R1S_5, R3S23, R2S37, R4S37])
   );
 };
 
