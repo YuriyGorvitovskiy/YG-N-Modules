@@ -499,6 +499,7 @@ const UNITRACK_HEIGHT = 7.2;
 const MEN55_HEIGHT = 1.45;
 const MEN55_FOOT_HEIGHT = 0.4;
 const ROADBAED_HEIGHT = 3.0;
+const CONNECTOR_HEIGHT = 1.75;
 
 const SLEEPER_Y_UNDER_RAIL = UNITRACK_HEIGHT - MEN55_HEIGHT - ROADBAED_HEIGHT;
 
@@ -610,40 +611,48 @@ const sleeper = (length, rails) => {
 };
 
 const sleepers = () => {
-  return union(
-    sleeper(SL1, [R1S_5, R4S_5]),
-    sleeper(SL1, [R1S_5, R4S_4]),
-    sleeper(SL1, [R1S_5, R4S_3]),
-    sleeper(SL1, [R1S_5, R2S_1, R3S_1, R4S_1]),
-    sleeper(SL2, [R1S_5, R2S01, R3S01, R4S01]),
-    sleeper(SL2, [R1S_5, R2S02, R3S02, R4S02]),
-    sleeper(SL2, [R1S_5, R2S03, R3S03, R4S03]),
-    sleeper(SL2, [R1S_5, R2S04, R3S04, R4S04]),
-    sleeper(SL2, [R1S_5, R2S05, R3S05, R4S05]),
-    sleeper(SL2, [R1S_5, R2S07, R3S07, R4S07]),
-    sleeper(SL3, [R1S_5, R2S08, R3S08, R4S08]),
-    sleeper(SL3, [R1S_5, R2S09, R3S09, R4S09]),
-    sleeper(SL3, [R1S_5, R2S10, R3S10, R4S10]),
-    sleeper(SL4, [R1S_5, R2S12, R3S12, R4S12]),
-    sleeper(SL4, [R1S_5, R2S13, R3S13, R4S13]),
-    sleeper(SL4, [R1S_5, R2S14, R3S14, R4S14]),
-    sleeper(SL5, [R1S_5, R2S15, R3S15, R4S15]),
-    sleeper(SL5, [R1S_5, R2S16, R3S16, R4S16]),
-    sleeper(SL6, [R1S_5, R2S18, R3S18, R4S18]),
-    sleeper(SL7, [R1S_5, R2S19, R3S18, R4S19]),
-    sleeper(SL7, [R1S_5, R2S20, R3S18, R4S20]),
-    sleeper(SL8, [R1S_5, R2S21, R3S18, R4S21]),
-    sleeper(SL8, [R1S_5, R2S22, R3S18, R4S22]),
-    sleeper(SL9, [R1S_5, R2S23, R3S23, R4S23]),
-    sleeper(SL10, [R1S_5, DGR1S26, DGR3S26, DGR2S26, DGR4S26, R4S26]),
-    sleeper(SL11, [R1S_5, DGR1S27, DGR3S27, DGR2S27, DGR4S27, R4S26]),
-    sleeper(SL11, [R1S_5, DGR1S28, DGR3S28, DGR2S28, DGR4S28, R4S26]),
-    sleeper(SL13, [R1S_5, R3S23, R2S30, R4S30]),
-    sleeper(SL13, [R1S_5, R3S23, R2S31, R4S31]),
-    sleeper(SL15, [R1S_5, R3S23, R2S34, R4S34]),
-    sleeper(SL16, [R1S_5, R3S23, R2S35, R4S35]),
-    sleeper(SL16, [R1S_5, R3S23, R2S36, R4S36]),
-    sleeper(SL17, [R1S_5, R3S23, R2S37, R4S37])
+  const GAP_S00 = (3 * DSW) / 2;
+  const GAP_DEPTH = SLEEPER_Y_TOP_HEIGHT - CONNECTOR_HEIGHT;
+
+  return difference(
+    union(
+      sleeper(SL1, [R1S_5, R4S_5]),
+      sleeper(SL1, [R1S_5, R4S_4]),
+      sleeper(SL1, [R1S_5, R4S_3]),
+      sleeper(SL1, [R1S_5, R2S_1, R3S_1, R4S_1]),
+      sleeper(SL2, [R1S_5, R2S01, R3S01, R4S01]),
+      sleeper(SL2, [R1S_5, R2S02, R3S02, R4S02]),
+      sleeper(SL2, [R1S_5, R2S03, R3S03, R4S03]),
+      sleeper(SL2, [R1S_5, R2S04, R3S04, R4S04]),
+      sleeper(SL2, [R1S_5, R2S05, R3S05, R4S05]),
+      sleeper(SL2, [R1S_5, R2S07, R3S07, R4S07]),
+      sleeper(SL3, [R1S_5, R2S08, R3S08, R4S08]),
+      sleeper(SL3, [R1S_5, R2S09, R3S09, R4S09]),
+      sleeper(SL3, [R1S_5, R2S10, R3S10, R4S10]),
+      sleeper(SL4, [R1S_5, R2S12, R3S12, R4S12]),
+      sleeper(SL4, [R1S_5, R2S13, R3S13, R4S13]),
+      sleeper(SL4, [R1S_5, R2S14, R3S14, R4S14]),
+      sleeper(SL5, [R1S_5, R2S15, R3S15, R4S15]),
+      sleeper(SL5, [R1S_5, R2S16, R3S16, R4S16]),
+      sleeper(SL6, [R1S_5, R2S18, R3S18, R4S18]),
+      sleeper(SL7, [R1S_5, R2S19, R3S18, R4S19]),
+      sleeper(SL7, [R1S_5, R2S20, R3S18, R4S20]),
+      sleeper(SL8, [R1S_5, R2S21, R3S18, R4S21]),
+      sleeper(SL8, [R1S_5, R2S22, R3S18, R4S22]),
+      sleeper(SL9, [R1S_5, R2S23, R3S23, R4S23]),
+      sleeper(SL10, [R1S_5, DGR1S26, DGR3S26, DGR2S26, DGR4S26, R4S26]),
+      sleeper(SL11, [R1S_5, DGR1S27, DGR3S27, DGR2S27, DGR4S27, R4S26]),
+      sleeper(SL11, [R1S_5, DGR1S28, DGR3S28, DGR2S28, DGR4S28, R4S26]),
+      sleeper(SL13, [R1S_5, R3S23, R2S30, R4S30]),
+      sleeper(SL13, [R1S_5, R3S23, R2S31, R4S31]),
+      sleeper(SL15, [R1S_5, R3S23, R2S34, R4S34]),
+      sleeper(SL16, [R1S_5, R3S23, R2S35, R4S35]),
+      sleeper(SL16, [R1S_5, R3S23, R2S36, R4S36]),
+      sleeper(SL17, [R1S_5, R3S23, R2S37, R4S37])
+    ),
+    cube({
+      size: [GAP_S00, SL2, GAP_DEPTH],
+    }).translate([-GAP_S00 / 2, 0, CONNECTOR_HEIGHT])
   );
 };
 
@@ -730,7 +739,7 @@ const connector = (top) => {
   const connector2D = polygon({
     points: bottomPoints.concat(topPoints.reverse()),
   });
-  return linear_extrude({ height: 1.75 }, connector2D);
+  return linear_extrude({ height: CONNECTOR_HEIGHT }, connector2D);
 };
 
 const connectors = () => {
